@@ -16,6 +16,9 @@ typedef struct queue3 {
 	int dist;
 }Queue3;
 
+extern Queue3 *q3;
+extern Queue3 *safety3;
+
 void bfs3(int x, int y);
 void dfs3(int x, int y, int npcX, int npcY);
 int ShortestDistance3(int npcX, int npcY);
