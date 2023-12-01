@@ -73,13 +73,14 @@ void NPCavoidBOMB(Queue* safety, int x, int y) {
 			int nx = safety[front].x + dx[i];
 			int ny = safety[front].y + dy[i];
 			if (nx >= 0 && nx < WIDTH && ny >= 0 && ny < HEIGHT) {
-				if (visited[ny][nx] == 0 &&
-					mapModel[ny][nx] != STATE_BOMB_SETTING && (
-						mapModel[ny][nx] == STATE_EMPTY ||
-						mapModel[ny][nx] == STATE_ITEM_BOMB_MAX ||
-						mapModel[ny][nx] == STATE_ITEM_BOMB_RANGE ||
-						mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE ||
-						NPCmapModel[ny][nx] == STATE_NPC_WARNING)) {
+				if (visited[ny][nx] == 0 && 
+					mapModel[ny][nx] != STATE_BOMB_SETTING && 
+					mapModel[ny][nx] != STATE_BOX && (
+					mapModel[ny][nx] == STATE_EMPTY ||
+					mapModel[ny][nx] == STATE_ITEM_BOMB_MAX ||
+					mapModel[ny][nx] == STATE_ITEM_BOMB_RANGE ||
+					mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE ||
+					NPCmapModel[ny][nx] == STATE_NPC_WARNING)) {
 
 					rear++;
 					safety[rear].x = nx;
@@ -119,12 +120,13 @@ void bfs(int x, int y) {
 				int nx = q[front].x + dx[i];
 				int ny = q[front].y + dy[i];
 				if (nx >= 0 && nx < WIDTH && ny >= 0 && ny < HEIGHT) {
-					if (((mapModel[ny][nx] == STATE_EMPTY || // ¾ÆÀÌÅÛ ¹«½ÃÇÏ°í °¡µµ·Ï, ³ªÁß¿¡ STATE_ITEM_EXIST·Î ÇÑ¹ø¿¡ ºñ±³
+					if (((mapModel[ny][nx] == STATE_EMPTY || // ì•„ì´í…œ ë¬´ì‹œí•˜ê³  ê°€ë„ë¡, ë‚˜ì¤‘ì— STATE_ITEM_EXISTë¡œ í•œë²ˆì— ë¹„êµ
 						mapModel[ny][nx] == STATE_ITEM_BOMB_MAX ||
 						mapModel[ny][nx] == STATE_ITEM_BOMB_RANGE ||
 						mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE) &&
 						NPCmapModel[ny][nx] != STATE_NPC_WARNING) &&
 						mapModel[ny][nx] != STATE_BOMB_SETTING &&
+						mapModel[ny][nx] != STATE_BOX &&
 						visited[ny][nx] == 0) {
 
 						rear++;
@@ -135,17 +137,17 @@ void bfs(int x, int y) {
 						weight[ny][nx] = q[rear].dist;
 
 
-						if (nx * 2 == PlayerCurPosX && ny == PlayerCurPosY) { // ¸¸¾à Å½»öÁß¿¡ ÇÃ·¹ÀÌ¾î À§Ä¡¸¦ ¹ß°ßÇÏ¸é
+						if (nx * 2 == PlayerCurPosX && ny == PlayerCurPosY) { // ë§Œì•½ íƒìƒ‰ì¤‘ì— í”Œë ˆì´ì–´ ìœ„ì¹˜ë¥¼ ë°œê²¬í•˜ë©´
 							kill_Mode = 1;
 						}
 
-						if (kill_Mode == 1) { // kill_Mode °¡ 1ÀÌ¸é ÇÃ·¹ÀÌ¾î¸¸ ÂÑ¾Æ´Ù´Ô
+						if (kill_Mode == 1) { // kill_Mode ê°€ 1ì´ë©´ í”Œë ˆì´ì–´ë§Œ ì«“ì•„ë‹¤ë‹˜
 							dstX = PlayerCurPosX / 2;
 							dstY = PlayerCurPosY;
 						}
-						else if (kill_Mode == 0) { // ¾ÆÁ÷ ÇÃ·¹ÀÌ¾î À§Ä¡¸¦ ¸øÃ£¾Ò´Ù¸é
+						else if (kill_Mode == 0) { // ì•„ì§ í”Œë ˆì´ì–´ ìœ„ì¹˜ë¥¼ ëª»ì°¾ì•˜ë‹¤ë©´
 
-							int cnt = 0; //¿©±âºÎÅÍ ÁÖ¼® Ä£ °¡Àå ¸¹Àº ºí·°À» ºÎ¼ú ¼ö ÀÖ´Â À§Ä¡·Î °¡´Â ¾Ë°í¸®Áò
+							int cnt = 0; //ì—¬ê¸°ë¶€í„° ì£¼ì„ ì¹œ ê°€ì¥ ë§ì€ ë¸”ëŸ­ì„ ë¶€ìˆ  ìˆ˜ ìˆëŠ” ìœ„ì¹˜ë¡œ ê°€ëŠ” ì•Œê³ ë¦¬ì¦˜
 							for (int j = 0; j < 4; j++) {
 								if (nx + wx[j] < 0) {
 									continue;
@@ -163,7 +165,7 @@ void bfs(int x, int y) {
 									cnt++;
 								}
 							}
-							if (cnt > can_Pos) { // ¸ñÇ¥ À§Ä¡¸¦ ÇöÀç NPCÀ§Ä¡¿¡¼­ °¡Àå ¸¹Àº ºí·°À» ºÎ¼ú ¼ö ÀÖ´Â À§Ä¡·Î ¼³Á¤ÇÔ
+							if (cnt > can_Pos) { // ëª©í‘œ ìœ„ì¹˜ë¥¼ í˜„ì¬ NPCìœ„ì¹˜ì—ì„œ ê°€ì¥ ë§ì€ ë¸”ëŸ­ì„ ë¶€ìˆ  ìˆ˜ ìˆëŠ” ìœ„ì¹˜ë¡œ ì„¤ì •í•¨
 								can_Pos = cnt;
 								dstX = nx;
 								dstY = ny;
@@ -179,8 +181,8 @@ void bfs(int x, int y) {
 int ShortestDistance(int npcX, int npcY) {
 
 	static int flag = 0;
-
-	if (flag == 0)
+	
+	/*if (flag == 0)
 	{
 		q = (Queue*)calloc(((WIDTH * 2) * (HEIGHT * 2)), sizeof(Queue));
 		safety = (Queue*)calloc(((WIDTH * 2) * (HEIGHT * 2)), sizeof(Queue));
@@ -190,7 +192,9 @@ int ShortestDistance(int npcX, int npcY) {
 	{
 		memset(q, 0, sizeof(q));
 		memset(safety, 0, sizeof(safety));
-	}
+	}*/
+	memset(q, 0, sizeof(q));
+	memset(safety, 0, sizeof(safety));
 
 	for (int i = 0; i < HEIGHT; i++) {
 		for (int j = 0; j < WIDTH; j++) {
@@ -203,14 +207,14 @@ int ShortestDistance(int npcX, int npcY) {
 	can_Pos = 0;				// 
 	weight[npcY][npcX] = 0;
 
-	bfs(npcX, npcY); // ¿©±â¿¡ NPCÀÇ Ãâ¹ß(x,y)ÁÂÇ¥¸¦ Áı¾î³Ö´Â´Ù.
+	bfs(npcX, npcY); // ì—¬ê¸°ì— NPCì˜ ì¶œë°œ(x,y)ì¢Œí‘œë¥¼ ì§‘ì–´ë„£ëŠ”ë‹¤.
 
 	weight[npcY][npcX] = 1;
 	int dist = q[rear].dist;
 
 	dfs(dstX, dstY, npcX, npcY);
 
-	//Áö±İ one_srt_dist¿¡¼­ ¹®Á¦°¡ »ı±è
+	//ì§€ê¸ˆ one_srt_distì—ì„œ ë¬¸ì œê°€ ìƒê¹€
 
 	for (int i = 0; i < WIDTH; i++) {
 		for (int j = 0; j < HEIGHT; j++) {
