@@ -24,6 +24,9 @@ int npc1_bomb_max = 1;
 void ShowNpcBlock()
 {
 	SetCurrentCursorPos(npcCurPosX, npcCurPosY);
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13); // 보라
+
 	printf("★");
 }
 
@@ -38,7 +41,10 @@ int NPC_moveLeft() {
 
 
 	if (mapModel[cursorY_to_arrY(npcCurPosY)][cursorX_to_arrX(npcCurPosX)] == STATE_BOMB_SETTING)
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4); // 어두운 빨강
 		printf("⊙");
+	}
 	else
 		DeleteBlock();
 	npcCurPosX -= 2;
@@ -53,7 +59,10 @@ int NPC_moveLeft() {
 int NPC_moveRight() {
 
 	if (mapModel[cursorY_to_arrY(npcCurPosY)][cursorX_to_arrX(npcCurPosX)] == STATE_BOMB_SETTING)
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4); // 어두운 빨강
 		printf("⊙");
+	}
 	else
 		DeleteBlock();
 	npcCurPosX += 2;
@@ -69,7 +78,10 @@ int NPC_moveRight() {
 int NPC_moveUp() {
 
 	if (mapModel[cursorY_to_arrY(npcCurPosY)][cursorX_to_arrX(npcCurPosX)] == STATE_BOMB_SETTING)
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4); // 어두운 빨강
 		printf("⊙");
+	}
 	else
 		DeleteBlock();
 	npcCurPosY -= 1;
@@ -84,7 +96,10 @@ int NPC_moveUp() {
 int NPC_moveDown() {
 
 	if (mapModel[cursorY_to_arrY(npcCurPosY)][cursorX_to_arrX(npcCurPosX)] == STATE_BOMB_SETTING)
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4); // 어두운 빨강
 		printf("⊙");
+	}
 	else
 		DeleteBlock();
 	npcCurPosY += 1;

@@ -27,6 +27,8 @@ void ShowPlayerBlock()
 
 	COORD curPos = GetCurrentCursorPos();
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10); // 초록
+
 	SetCurrentCursorPos(curPos.X, curPos.Y);
 	printf("  ");
 	SetCurrentCursorPos(curPos.X, curPos.Y);
@@ -42,6 +44,8 @@ void DeletePlayerBlock()
 
 	if (checkObject_exist_bomb(curPos.X, curPos.Y) == 1)
 	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4); // 어두운 빨강
+
 		SetCurrentCursorPos(curPos.X, curPos.Y);
 		printf("⊙");
 		SetCurrentCursorPos(curPos.X, curPos.Y);
@@ -160,6 +164,9 @@ int CheckPlayerState()
 	if (checkObject_boom(PlayerCurPosX, PlayerCurPosY) == 1)
 	{
 		SetCurrentCursorPos(3, HEIGHT + GBOARD_ORIGIN_Y);
+
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 5); // 어두운 보라
+
 		printf("Player down    Game Over!\n");
 		return (1);
 	}
