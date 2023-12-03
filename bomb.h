@@ -32,6 +32,9 @@ typedef struct BOOMHead {
 } BOOMHead;
 
 
+
+
+
 Bomb* getBombNode(int x, int y, int who_set);
 void insertitem(Bomb* w);
 BOOM* getnode_BOOM(int x, int y, unsigned long long time);

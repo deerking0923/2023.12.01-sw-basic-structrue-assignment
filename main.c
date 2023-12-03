@@ -19,6 +19,7 @@
 
 unsigned long long start_game_time;
 unsigned long long current_game_time;
+unsigned long long stage_start_time;
 
 int player_item_range;
 
@@ -70,7 +71,7 @@ int main(void)
 
 	for (int game_round = 0; game_round < 3; game_round++)
 	{
-
+		stage_start_time = clock();
 		PlayerState = 1;
 		PlayerCurPosX = arrX_to_cursorX(WIDTH - 3);		//get_Player_starting_point_x();
 		PlayerCurPosY = arrY_to_cursorY(HEIGHT - 3);  //get_Player_starting_point_y();
@@ -211,6 +212,9 @@ int main(void)
 				}
 				printf("\n");
 			}*/
+
+			if (game_round >= 0)
+				sky_bomb_drop();
 		}
 	}
 

@@ -8,6 +8,15 @@
 
 #include "cursor.h"
 
+extern unsigned long long recent_sky_bomb_drop_time = 0;
+extern int PlayerCurPosX, PlayerCurPosY; // 플레이어 현재 좌표
+extern int npcCurPosX, npcCurPosY;
+extern int npcCurPosX2, npcCurPosY2;
+extern int npcCurPosX3, npcCurPosY3;
+extern unsigned long long set_sky_bomb_warning_time = 0;
+extern int check_sky_bomb_set = 0;
+
+
 int NPCmapModel[HEIGHT][WIDTH];
 
 int mapModel[HEIGHT][WIDTH] =
@@ -880,4 +889,114 @@ int checkObject_character_Move_reverse_Item(int cursorX, int cursorY)			//인자로
 	if (mapModel[y][x] == STATE_ITEM_CHARACTER_MOVE_REVERSE)
 		return (1);
 	return (0);
+}
+
+// 12월 02일
+int checkObject_Empty(int cursorX, int cursorY)		//인자로 주어진 좌표가 비어있는지
+{
+	int x = (cursorX - GBOARD_ORIGIN_X) / 2;
+	int y = cursorY - GBOARD_ORIGIN_Y;
+
+	if (mapModel[y][x] == STATE_EMPTY)
+		return (1);
+	return (0);
+}
+
+void sky_bomb_drop()
+{
+	current_game_time = clock();
+
+	// 10초가 지난 후
+	if (current_game_time - stage_start_time >= 10000)
+	{
+
+		//printf("stage_start_time = %ld", stage_start_time);
+		if (current_game_time - recent_sky_bomb_drop_time >= 5000)
+		{
+			bomb_dropping();
+			recent_sky_bomb_drop_time = clock();
+			check_sky_bomb_set = 1;
+		}
+
+		if (current_game_time - recent_sky_bomb_drop_time >= 1000 && check_sky_bomb_set == 1)
+		{
+			set_Empty(sky_bomb_drop_coordinate.X, sky_bomb_drop_coordinate.Y);
+			
+			Bomb* newbomb = getBombNode(sky_bomb_drop_coordinate.X, sky_bomb_drop_coordinate.Y, WHO_SET_SKY_BOMB); //x, y좌표의 새 폭탄 얻어옴.
+
+			insertitem(newbomb);
+			check_sky_bomb_set = 0;
+		}
+	}
+
+}
+
+
+void bomb_dropping()
+{
+	COORD tmp_arr[9];		//mapModel좌표값 저장
+	int index = 0;
+	for (int i = -1; i <= 1; i++) {
+		for (int j = -1; j <= 1; j++)
+		{
+			if (i != 0 && j != 0)
+			{
+				if (check_can_sky_bomb_drop(cursorX_to_arrX(PlayerCurPosX) + j, cursorY_to_arrY(PlayerCurPosY) + i) == 1)
+				{
+					tmp_arr[index].X = cursorX_to_arrX(PlayerCurPosX) + j;
+					tmp_arr[index].Y = cursorY_to_arrY(PlayerCurPosY) + i;
+					index++;
+				}
+			}
+		}
+	}
+
+	if (index > 0)
+	{
+		int selected_index = rand() % index;
+		set_sky_bomb_warning(tmp_arr[selected_index].X, tmp_arr[selected_index].Y);
+		set_sky_bomb_warning_time = clock();
+		sky_bomb_drop_coordinate.X = tmp_arr[selected_index].X;
+		sky_bomb_drop_coordinate.Y = tmp_arr[selected_index].Y;
+	}
+}
+
+// 폭탄이 하늘에서 떨어질 수 있는 좌표인지 확인하는 함수
+int check_can_sky_bomb_drop(int arrX, int arrY)
+{
+	// 맵 좌표를 벗어나는 경우
+	if (arrX < 0 || arrX > WIDTH - 1)
+		return 0;
+	if (arrY < 0 || arrY > HEIGHT - 1)
+		return 0;
+
+	// NPC가 있는 경우
+	if (arrX_to_cursorX(arrX) == npcCurPosX && arrY_to_cursorY(arrY) == npcCurPosY)
+		return (0);
+	if (arrX_to_cursorX(arrX) == npcCurPosX2 && arrY_to_cursorY(arrY) == npcCurPosY2)
+		return (0);
+	if (arrX_to_cursorX(arrX) == npcCurPosX3 && arrY_to_cursorY(arrY) == npcCurPosY3)
+		return (0);
+
+	if (checkObject_Empty(arrX_to_cursorX(arrX), arrY_to_cursorY(arrY)) == 1)
+	{
+		return (1);
+	}
+
+	return (0);
+}
+
+void set_sky_bomb_warning(int arrX, int arrY)
+{
+	COORD pre = GetCurrentCursorPos();
+
+	int cursorX = arrX * 2 + GBOARD_ORIGIN_X;
+	int cursorY = arrY + GBOARD_ORIGIN_Y;
+
+	mapModel[arrY][arrX] = SKY_BOMB_DROP_WARNING;
+	SetCurrentCursorPos(cursorX, cursorY);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3); // 빨강
+	printf("！");
+
+	SetCurrentCursorPos(pre.X, pre.Y);
 }

@@ -2,6 +2,7 @@
 #define __MAP_H__
 
 #include "bomb.h"
+#include <Windows.h>
 
 #include "define_state.h"
 
@@ -23,7 +24,14 @@ typedef struct map_box_head {
 	struct map_box* next;
 } Map_box_head;
 
+
 Map_box_head* map_box_head;
+extern unsigned long long current_game_time;
+extern unsigned long long recent_sky_bomb_drop_time;//warning을 놓은 시간
+extern unsigned long long stage_start_time;
+int check_sky_bomb_set;
+
+COORD sky_bomb_drop_coordinate;
 
 int* output_random_5_num_arr();		//맵 랜덤 배치를 위한 랜덤 숫자 5개 생성 함수
 void resetMap();		//맵 초기 값 설정
@@ -87,6 +95,12 @@ void draw_Item_chracter_move_reverse(int cursorX, int cursorY); // 캐릭터 이동 �
 
 int checkObject_character_Move_reverse_Item(int cursorX, int cursorY);			//인자로 주어진 좌표에 이동속도 증가 아이템이 있는지
 
+// 12월 02일
+int checkObject_Empty(int cursorX, int cursorY);		//인자로 주어진 좌표가 비어있는지
+void sky_bomb_drop();
+void bomb_dropping();
+int check_can_sky_bomb_drop(int arrX, int arrY);
+void set_sky_bomb_warning(int arrX, int arrY);
 
 
 #endif

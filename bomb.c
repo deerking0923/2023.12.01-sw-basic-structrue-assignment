@@ -111,6 +111,7 @@ void insertitem(Bomb* w)
 		npc2_bomb_exist_count++;
 	if (w->who_set == NPC3)
 		npc3_bomb_exist_count++;
+	
 }
 
 BOOM* getnode_BOOM(int x, int y, unsigned long long time)
