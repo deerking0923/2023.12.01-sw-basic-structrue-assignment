@@ -3,7 +3,7 @@
 #include <conio.h>
 #include <time.h>
 #include "map.h"
-#include "cursor.h" //getcursor, setcursor ÇÔ¼öµéÀ» ÆÄÀÏ·Î µû·Î »°À½
+#include "cursor.h" //getcursor, setcursor í•¨ìˆ˜ë“¤ì„ íŒŒì¼ë¡œ ë”°ë¡œ ëºìŒ
 #include "player.h"
 
 #include "bomb.h"
@@ -36,7 +36,7 @@ extern int npc1_state_flag = 0;
 extern int npc2_state_flag = 0;
 extern int npc3_state_flag = 0;
 
-extern Map_box_head* map_box_head;             //ÆøÅºÀÌ ¸ğµÎ ÅÍÁø ÈÄ ¹Ú½º¸¦ ¾ø¾Ö±â À§ÇÑ ¸Ê ¹Ú½º ±¸Á¶Ã¼ ¹è¿­ÀÇ Çìµå ¼±¾ğ
+extern Map_box_head* map_box_head;             //í­íƒ„ì´ ëª¨ë‘ í„°ì§„ í›„ ë°•ìŠ¤ë¥¼ ì—†ì• ê¸° ìœ„í•œ ë§µ ë°•ìŠ¤ êµ¬ì¡°ì²´ ë°°ì—´ì˜ í—¤ë“œ ì„ ì–¸
 
 extern int mapModel[HEIGHT][WIDTH];
 extern int mapModel2[HEIGHT][WIDTH];
@@ -46,7 +46,18 @@ extern int mapModel3[HEIGHT][WIDTH];
 
 int main(void)
 {
-	system("mode con:cols=100 lines=90 | title Æ÷Æ÷ÆøÅº");
+	q3 = (Queue3*)calloc(((WIDTH * 1) * (HEIGHT * 1)), sizeof(Queue3));
+	safety3 = (Queue3*)calloc(((WIDTH * 1) * (HEIGHT * 1)), sizeof(Queue3));
+
+	q2 = (Queue2*)calloc(((WIDTH * 1) * (HEIGHT * 1)), sizeof(Queue2));
+	safety2 = (Queue2*)calloc(((WIDTH * 1) * (HEIGHT * 1)), sizeof(Queue2));
+
+	q = (Queue*)calloc(((WIDTH * 1) * (HEIGHT * 1)), sizeof(Queue));
+	safety = (Queue*)calloc(((WIDTH * 1) * (HEIGHT * 1)), sizeof(Queue));
+
+	Sleep(500);
+	
+	system("mode con:cols=100 lines=90 | title í¬í¬í­íƒ„");
 
 	RemoveCursor();
 
@@ -204,7 +215,7 @@ int main(void)
 					break;
 				}
 			}
-			/*if¹® ³¡³ª´Â ÁöÁ¡*/
+			/*ifë¬¸ ëë‚˜ëŠ” ì§€ì */
 			/*SetCurrentCursorPos(0, 20);
 			for (int i = 0; i < HEIGHT; i++) {
 				for (int j = 0; j < WIDTH; j++) {

@@ -29,8 +29,8 @@ int dy3[4] = { 1,0,-1,0 };
 int wx3[4] = { 0,1,0,-1 };
 int wy3[4] = { 1,0,-1,0 };
 
-Queue3* q;
-Queue3* safety;
+Queue3* q3;
+Queue3* safety3;
 
 int can_Pos3 = 0;
 
@@ -76,13 +76,13 @@ void NPCavoidBOMB3(Queue3* safety, int x, int y) {
 			int ny = safety[front3].y + dy3[i];
 			if (nx >= 0 && nx < WIDTH && ny >= 0 && ny < HEIGHT) {
 				if (visited3[ny][nx] == 0 &&
-					mapModel[ny][nx] != STATE_BOMB_SETTING &&
+					mapModel[ny][nx] != STATE_BOMB_SETTING && 
 					mapModel[ny][nx] != STATE_BOX && (
-						mapModel[ny][nx] == STATE_EMPTY ||
-						mapModel[ny][nx] == STATE_ITEM_BOMB_MAX ||
-						mapModel[ny][nx] == STATE_ITEM_BOMB_RANGE ||
-						mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE ||
-						NPCmapModel[ny][nx] == STATE_NPC_WARNING)) {
+					mapModel[ny][nx] == STATE_EMPTY ||
+					mapModel[ny][nx] == STATE_ITEM_BOMB_MAX ||
+					mapModel[ny][nx] == STATE_ITEM_BOMB_RANGE ||
+					mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE ||
+					NPCmapModel[ny][nx] == STATE_NPC_WARNING)) {
 
 					rear3++;
 					safety[rear3].x = nx;
@@ -107,22 +107,22 @@ void bfs3(int x, int y) {
 
 	if (NPCmapModel[y][x] == STATE_NPC_WARNING) {
 		kill_Mode3 = 0;
-		NPCavoidBOMB3(safety, x, y);
+		NPCavoidBOMB3(safety3, x, y);
 	}
 
 	else {
 		rear3++;
-		q[rear3].x = x;
-		q[rear3].y = y;
-		q[rear3].dist = 1;
-
+		q3[rear3].x = x;
+		q3[rear3].y = y;
+		q3[rear3].dist = 1;
+		
 		while (front3 < rear3) {
 			front3++;
 			for (int i = 0; i < 4; i++) {
-				int nx = q[front3].x + dx3[i];
-				int ny = q[front3].y + dy3[i];
+				int nx = q3[front3].x + dx3[i];
+				int ny = q3[front3].y + dy3[i];
 				if (nx >= 0 && nx < WIDTH && ny >= 0 && ny < HEIGHT) {
-					if (((mapModel[ny][nx] == STATE_EMPTY || // ¾ÆÀÌÅÛ ¹«½ÃÇÏ°í °¡µµ·Ï, ³ªÁß¿¡ STATE_ITEM_EXIST·Î ÇÑ¹ø¿¡ ºñ±³
+					if (((mapModel[ny][nx] == STATE_EMPTY || // ì•„ì´í…œ ë¬´ì‹œí•˜ê³  ê°€ë„ë¡, ë‚˜ì¤‘ì— STATE_ITEM_EXISTë¡œ í•œë²ˆì— ë¹„êµ
 						mapModel[ny][nx] == STATE_ITEM_BOMB_MAX ||
 						mapModel[ny][nx] == STATE_ITEM_BOMB_RANGE ||
 						mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE) &&
@@ -132,24 +132,24 @@ void bfs3(int x, int y) {
 						visited3[ny][nx] == 0) {
 
 						rear3++;
-						q[rear3].x = nx;
-						q[rear3].y = ny;
-						q[rear3].dist = q[front3].dist + 1;
+						q3[rear3].x = nx;
+						q3[rear3].y = ny;
+						q3[rear3].dist = q3[front3].dist + 1;
 						visited3[ny][nx] = 1;
-						weight3[ny][nx] = q[rear3].dist;
+						weight3[ny][nx] = q3[rear3].dist;
 
 
-						if (nx * 2 == PlayerCurPosX && ny == PlayerCurPosY) { // ¸¸¾à Å½»öÁß¿¡ ÇÃ·¹ÀÌ¾î À§Ä¡¸¦ ¹ß°ßÇÏ¸é
+						if (nx * 2 == PlayerCurPosX && ny == PlayerCurPosY) { // ë§Œì•½ íƒìƒ‰ì¤‘ì— í”Œë ˆì´ì–´ ìœ„ì¹˜ë¥¼ ë°œê²¬í•˜ë©´
 							kill_Mode3 = 1;
 						}
 
-						if (kill_Mode3 == 1) { // kill_Mode °¡ 1ÀÌ¸é ÇÃ·¹ÀÌ¾î¸¸ ÂÑ¾Æ´Ù´Ô
+						if (kill_Mode3 == 1) { // kill_Mode ê°€ 1ì´ë©´ í”Œë ˆì´ì–´ë§Œ ì«“ì•„ë‹¤ë‹˜
 							dstX3 = PlayerCurPosX / 2;
 							dstY3 = PlayerCurPosY;
 						}
-						else if (kill_Mode3 == 0) { // ¾ÆÁ÷ ÇÃ·¹ÀÌ¾î À§Ä¡¸¦ ¸øÃ£¾Ò´Ù¸é
+						else if (kill_Mode3 == 0) { // ì•„ì§ í”Œë ˆì´ì–´ ìœ„ì¹˜ë¥¼ ëª»ì°¾ì•˜ë‹¤ë©´
 
-							int cnt = 0; //¿©±âºÎÅÍ ÁÖ¼® Ä£ °¡Àå ¸¹Àº ºí·°À» ºÎ¼ú ¼ö ÀÖ´Â À§Ä¡·Î °¡´Â ¾Ë°í¸®Áò
+							int cnt = 0; //ì—¬ê¸°ë¶€í„° ì£¼ì„ ì¹œ ê°€ì¥ ë§ì€ ë¸”ëŸ­ì„ ë¶€ìˆ  ìˆ˜ ìˆëŠ” ìœ„ì¹˜ë¡œ ê°€ëŠ” ì•Œê³ ë¦¬ì¦˜
 							for (int j = 0; j < 4; j++) {
 								if (nx + wx3[j] < 0) {
 									continue;
@@ -167,7 +167,7 @@ void bfs3(int x, int y) {
 									cnt++;
 								}
 							}
-							if (cnt > can_Pos3) { // ¸ñÇ¥ À§Ä¡¸¦ ÇöÀç NPCÀ§Ä¡¿¡¼­ °¡Àå ¸¹Àº ºí·°À» ºÎ¼ú ¼ö ÀÖ´Â À§Ä¡·Î ¼³Á¤ÇÔ
+							if (cnt > can_Pos3) { // ëª©í‘œ ìœ„ì¹˜ë¥¼ í˜„ì¬ NPCìœ„ì¹˜ì—ì„œ ê°€ì¥ ë§ì€ ë¸”ëŸ­ì„ ë¶€ìˆ  ìˆ˜ ìˆëŠ” ìœ„ì¹˜ë¡œ ì„¤ì •í•¨
 								can_Pos3 = cnt;
 								dstX3 = nx;
 								dstY3 = ny;
@@ -182,19 +182,22 @@ void bfs3(int x, int y) {
 
 int ShortestDistance3(int npcX, int npcY) {
 
-	static int flag3 = 0;
+	/*static int flag3 = 0;
 
 	if (flag3 == 0)
 	{
-		q = (Queue3*)calloc(((WIDTH * 2) * (HEIGHT * 2)), sizeof(Queue3));
-		safety = (Queue3*)calloc(((WIDTH * 2) * (HEIGHT * 2)), sizeof(Queue3));
+		q3 = (Queue3*)calloc(((WIDTH * 2) * (HEIGHT * 2)), sizeof(Queue3));
+		safety3 = (Queue3*)calloc(((WIDTH * 2) * (HEIGHT * 2)), sizeof(Queue3));
 		flag3++;
 	}
 	else
 	{
-		memset(q, 0, sizeof(q));
-		memset(safety, 0, sizeof(safety));
-	}
+		memset(q3, 0, sizeof(q3));
+		memset(safety3, 0, sizeof(safety3));
+	}*/
+
+	memset(q3, 0, sizeof(q3));
+	memset(safety3, 0, sizeof(safety3));
 
 	for (int i = 0; i < HEIGHT; i++) {
 		for (int j = 0; j < WIDTH; j++) {
@@ -208,14 +211,14 @@ int ShortestDistance3(int npcX, int npcY) {
 	can_Pos3 = 0;				// 
 	weight3[npcY][npcX] = 0;
 
-	bfs3(npcX, npcY); // ¿©±â¿¡ NPCÀÇ Ãâ¹ß(x,y)ÁÂÇ¥¸¦ Áı¾î³Ö´Â´Ù.
+	bfs3(npcX, npcY); // ì—¬ê¸°ì— NPCì˜ ì¶œë°œ(x,y)ì¢Œí‘œë¥¼ ì§‘ì–´ë„£ëŠ”ë‹¤.
 
 	weight3[npcY][npcX] = 1;
-	int dist = q[rear3].dist;
+	int dist = q3[rear3].dist;
 
 	dfs3(dstX3, dstY3, npcX, npcY);
 
-	//Áö±İ one_srt_dist¿¡¼­ ¹®Á¦°¡ »ı±è
+	//ì§€ê¸ˆ one_srt_distì—ì„œ ë¬¸ì œê°€ ìƒê¹€
 
 	for (int i = 0; i < WIDTH; i++) {
 		for (int j = 0; j < HEIGHT; j++) {
