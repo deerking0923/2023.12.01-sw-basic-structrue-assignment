@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <windows.h>
+#include <Windows.h>
 
 #include "Test_Moving2.h"
 #include "cursor.h"

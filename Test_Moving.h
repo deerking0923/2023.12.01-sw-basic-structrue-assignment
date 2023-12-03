@@ -1,7 +1,7 @@
 #ifndef __TESTMOVING_H__
 #define __TESTMOVING_H__
 
-#include <windows.h>
+#include <Windows.h>
 #include "calculatorDST.h"
 
 extern int npcCurPosX, npcCurPosY;

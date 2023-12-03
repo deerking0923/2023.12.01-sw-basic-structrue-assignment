@@ -1,8 +1,8 @@
 #ifndef __TESTMOVING3_H__
 #define __TESTMOVING3_H__
 
-#include <windows.h>
-#include "calculatorDST.h"
+#include <Windows.h>
+#include "calculatorDST3.h"
 
 extern int npcCurPosX3, npcCurPosY3;
 extern unsigned long long NPC_current_Time3;

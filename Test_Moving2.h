@@ -1,8 +1,8 @@
 #ifndef __TESTMOVING2_H__
 #define __TESTMOVING2_H__
 
-#include <windows.h>
-#include "calculatorDST.h"
+#include <Windows.h>
+#include "calculatorDST2.h"
 
 extern int npcCurPosX2, npcCurPosY2;
 extern unsigned long long NPC_current_Time2;
@@ -17,5 +17,6 @@ int NPC_moveDown2();
 int NpcMoving2();
 int CheckNPCState2();
 int NPC2_die();
+
 
 #endif

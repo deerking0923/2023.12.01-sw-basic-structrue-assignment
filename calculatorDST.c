@@ -194,6 +194,7 @@ int ShortestDistance(int npcX, int npcY) {
 		memset(safety, 0, sizeof(safety));
 	}*/
 	memset(q, 0, sizeof(q));
+
 	memset(safety, 0, sizeof(safety));
 
 	for (int i = 0; i < HEIGHT; i++) {

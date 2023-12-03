@@ -14,6 +14,8 @@
 
 #include "define_state.h"
 
+int qnogaw;
+
 int one_srt_dist3[101][101];
 
 int dstX3, dstY3;
