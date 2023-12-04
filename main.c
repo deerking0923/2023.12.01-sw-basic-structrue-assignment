@@ -81,7 +81,7 @@ int main(void)
 
 	NPC_current_Time = 0;
 
-	for (game_round = 3; game_round < 6; game_round++)
+	for (game_round = 0; game_round < 6; game_round++)
 	{
 		stage_start_time = clock();
 		PlayerState = 1;
