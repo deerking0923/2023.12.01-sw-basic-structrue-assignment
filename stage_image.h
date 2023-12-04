@@ -45,7 +45,8 @@ void GameOver_Mapdrawing(); //게임 오버할 때 호출
 void NextStage_Mapdrawing(); //다음 스테이지로 넘어갈때 호출
 void Clear_Letterdrawing(); //클리어할 때 호출
 
-
+// 12월 04일 이경빈이 추가 스테이지 출력하는 화면 공백으로 초기화하는 함수 추가
+void draw_Stagemap_reset();		//스테이지출력했던 화면 공백으로 초기화
 
 /*map.c*/
 //새로운 맵들

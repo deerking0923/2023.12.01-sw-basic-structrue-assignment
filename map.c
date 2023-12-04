@@ -1166,3 +1166,66 @@ void set_sky_bomb_warning(int arrX, int arrY)
 
 	SetCurrentCursorPos(pre.X, pre.Y);
 }
+
+//12월 04일 준형이가 만든 맵 추가
+
+void set_mapModel_spiral()
+{
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		for (int j = 0; j < WIDTH; j++)
+		{
+			mapModel[i][j] = mapModel_spiral[i][j];
+		}
+	}
+}
+void set_mapModel_eye()
+{
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		for (int j = 0; j < WIDTH; j++)
+		{
+			mapModel[i][j] = mapModel_eye[i][j];
+		}
+	}
+}
+void set_mapModel_snail()
+{
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		for (int j = 0; j < WIDTH; j++)
+		{
+			mapModel[i][j] = mapModel_snail[i][j];
+		}
+	}
+}
+void set_mapModel_symmetry()
+{
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		for (int j = 0; j < WIDTH; j++)
+		{
+			mapModel[i][j] = mapModel_symmetry[i][j];
+		}
+	}
+}
+void set_mapModel_popopoktan()
+{
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		for (int j = 0; j < WIDTH; j++)
+		{
+			mapModel[i][j] = mapModel_popopoktan[i][j];
+		}
+	}
+}
+void set_mapModel_firework()
+{
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		for (int j = 0; j < WIDTH; j++)
+		{
+			mapModel[i][j] = mapModel_firework[i][j];
+		}
+	}
+}

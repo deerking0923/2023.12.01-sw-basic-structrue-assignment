@@ -9,6 +9,7 @@
 
 #include "define_state.h"
 #include "calculatorDST.h"
+#include "stage_image.h"
 
 #include <time.h>
 
@@ -166,8 +167,8 @@ int CheckPlayerState()
 		SetCurrentCursorPos(3, HEIGHT + GBOARD_ORIGIN_Y);
 
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 5); // 어두운 보라
-
-		printf("Player down    Game Over!\n");
+		GameOver_Mapdrawing();
+		//printf("Player down    Game Over!\n");
 		return (1);
 	}
 	return (0);

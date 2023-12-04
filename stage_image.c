@@ -390,7 +390,7 @@ void GameOver_Mapdrawing() {
 	int b = 15;
 	SetCurrentCursorPos(0, letter_HEIGHT + 1);
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), b);
-	printf("Player Score = %d"); //최종 플레이어 점수 넣기
+	//printf("Player Score = %d"); //최종 플레이어 점수 넣기
 	while (1) {
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), a);
 		draw_GameOver_letterMaps();
@@ -421,4 +421,25 @@ void Clear_Letterdrawing() {
 		if (a == 10) a = 15;
 		else a = 10;
 	}
+}
+
+
+// 12월 04일 이경빈이 수정 (stage map reset 함수 추가)
+void draw_Stagemap_reset()		//스테이지출력했던 화면 공백으로 초기화
+{
+	int x, y;
+	int cursX, cursY;
+
+	for (y = 0; y < letter_HEIGHT; y++) {
+		if (y >= 8)SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+		for (x = 0; x < letter_WIDTH; x++)
+		{
+			cursX = x * 2 + GBOARD_ORIGIN_X; /*GBOARD_ORIGIN_X*/;
+			cursY = y + GBOARD_ORIGIN_Y; /*GBOARD_ORIGIN_Y*/;
+
+			SetCurrentCursorPos(cursX, cursY);
+			printf("  ");
+		}
+	}
+	//여기에 다음 스테이지로 넘어가는 함수 호출
 }

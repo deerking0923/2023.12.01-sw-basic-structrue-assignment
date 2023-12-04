@@ -87,6 +87,9 @@ void remove_generate_item_all_map_box_struct(Map_box_head* head);
 void set_mapModel2();
 void set_mapModel3();
 
+
+
+
 void reset_npcMapModel();
 
 
@@ -101,6 +104,15 @@ void sky_bomb_drop();
 void bomb_dropping();
 int check_can_sky_bomb_drop(int arrX, int arrY);
 void set_sky_bomb_warning(int arrX, int arrY);
+
+//12월 04일 준형이가 만든 맵 추가
+
+void set_mapModel_spiral();
+void set_mapModel_eye();
+void set_mapModel_snail();
+void set_mapModel_symmetry();
+void set_mapModel_popopoktan();
+void set_mapModel_firework();
 
 
 #endif

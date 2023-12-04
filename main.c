@@ -14,6 +14,7 @@
 #include "calculatorDST.h"
 #include "calculatorDST2.h"
 #include "calculatorDST3.h"
+#include "stage_image.h"
 
 
 
@@ -57,7 +58,7 @@ int main(void)
 
 	Sleep(500);
 	
-	system("mode con:cols=100 lines=90 | title 포포폭탄");
+	system("mode con:cols=100 lines=30 | title 포포폭탄");
 
 	RemoveCursor();
 
@@ -80,7 +81,7 @@ int main(void)
 
 	NPC_current_Time = 0;
 
-	for (game_round = 0; game_round < 3; game_round++)
+	for (game_round = 0; game_round < 6; game_round++)
 	{
 		stage_start_time = clock();
 		PlayerState = 1;
@@ -105,14 +106,33 @@ int main(void)
 		npc2_state_flag = 0;
 		npc3_state_flag = 0;
 
-		if (game_round == 1)
+		if (game_round == 0)
+		{
+			
+			bombHead->next = NULL;
+			boomhead->next = NULL;
+			/*TimeCheck();
+			TimeCheck_BOOM();*/
+			set_mapModel_spiral();
+			reset_npcMapModel();
+			draw_Stagemap_reset();
+			NextStage_Mapdrawing();
+			draw_Stagemap_reset();
+			SetCurrentCursorPos(3, HEIGHT + GBOARD_ORIGIN_Y);
+			printf("                      \n");
+			printf("                         \n");
+		}
+		else if (game_round == 1)
 		{
 			bombHead->next = NULL;
 			boomhead->next = NULL;
 			TimeCheck();
 			TimeCheck_BOOM();
-			set_mapModel2();
+			set_mapModel_eye();
 			reset_npcMapModel();
+			draw_Stagemap_reset();
+			NextStage_Mapdrawing();
+			draw_Stagemap_reset();
 			SetCurrentCursorPos(3, HEIGHT + GBOARD_ORIGIN_Y);
 			printf("                      \n");
 			printf("                         \n");
@@ -123,13 +143,60 @@ int main(void)
 			boomhead->next = NULL;
 			TimeCheck();
 			TimeCheck_BOOM();
-			set_mapModel3();
+			set_mapModel_snail();
 			reset_npcMapModel();
+			draw_Stagemap_reset();
+			NextStage_Mapdrawing();
+			draw_Stagemap_reset();
 			SetCurrentCursorPos(3, HEIGHT + GBOARD_ORIGIN_Y);
 			printf("                      \n");
 			printf("                         \n");
 		}
-
+		else if (game_round == 3)
+		{
+			bombHead->next = NULL;
+			boomhead->next = NULL;
+			TimeCheck();
+			TimeCheck_BOOM();
+			set_mapModel_symmetry();
+			reset_npcMapModel();
+			draw_Stagemap_reset();
+			NextStage_Mapdrawing();
+			draw_Stagemap_reset();
+			SetCurrentCursorPos(3, HEIGHT + GBOARD_ORIGIN_Y);
+			printf("                      \n");
+			printf("                         \n");
+		}
+		else if (game_round == 4)
+		{
+			bombHead->next = NULL;
+			boomhead->next = NULL;
+			TimeCheck();
+			TimeCheck_BOOM();
+			set_mapModel_popopoktan();
+			reset_npcMapModel();
+			draw_Stagemap_reset();
+			NextStage_Mapdrawing();
+			draw_Stagemap_reset();
+			SetCurrentCursorPos(3, HEIGHT + GBOARD_ORIGIN_Y);
+			printf("                      \n");
+			printf("                         \n");
+		}
+		else if (game_round == 5)
+		{
+			bombHead->next = NULL;
+			boomhead->next = NULL;
+			TimeCheck();
+			TimeCheck_BOOM();
+			set_mapModel_firework();
+			reset_npcMapModel();
+			draw_Stagemap_reset();
+			NextStage_Mapdrawing();
+			draw_Stagemap_reset();
+			SetCurrentCursorPos(3, HEIGHT + GBOARD_ORIGIN_Y);
+			printf("                      \n");
+			printf("                         \n");
+		}
 		drawMaps();
 
 		while (1)
@@ -165,13 +232,12 @@ int main(void)
 				}
 				if (npc1_state_flag == 1)
 				{
-					printf("next stage!!!\n");
+					//printf("next stage!!!\n");
 					Sleep(3000);
 					break;
 				}
 			}
-
-			if (game_round == 1) {
+			else if (game_round == 1) {
 				if (CheckNPCState() != 1 && npc1_state_flag == 0) {
 					NpcMoving();
 				}
@@ -185,12 +251,12 @@ int main(void)
 					NPC2_die();
 				}
 				if (npc1_state_flag == 1 && npc2_state_flag == 1) {
-					printf("next stage!!!\n");
+					//printf("next stage!!!\n");
 					Sleep(3000);
 					break;
 				}
 			}
-			if (game_round == 2) {
+			else if (game_round == 2) {
 				if (CheckNPCState() != 1 && npc1_state_flag == 0) {
 					NpcMoving();
 				}
@@ -210,7 +276,64 @@ int main(void)
 					NPC3_die();
 				}
 				if (npc1_state_flag == 1 && npc2_state_flag == 1 && npc3_state_flag == 1) {
-					printf("next stage!!!\n");
+					//printf("next stage!!!\n");
+
+					Sleep(3000);
+					break;
+				}
+			}
+			else if (game_round == 3) {
+				if (CheckNPCState() != 1 && npc1_state_flag == 0) {
+					NpcMoving();
+				}
+				if (npc1_state_flag == 1)
+				{
+					//printf("next stage!!!\n");
+					Sleep(3000);
+					break;
+				}
+			}
+			else if (game_round == 4) {
+				if (CheckNPCState() != 1 && npc1_state_flag == 0) {
+					NpcMoving();
+				}
+				if (CheckNPCState2() != 1 && npc2_state_flag == 0) {
+					NpcMoving2();
+				}
+				if (npc1_state_flag == 1) {
+					NPC1_die();
+				}
+				if (npc2_state_flag == 1) {
+					NPC2_die();
+				}
+				if (npc1_state_flag == 1 && npc2_state_flag == 1) {
+					//printf("next stage!!!\n");
+					Sleep(3000);
+					break;
+				}
+			}
+			else if (game_round == 5) {
+				if (CheckNPCState() != 1 && npc1_state_flag == 0) {
+					NpcMoving();
+				}
+				if (CheckNPCState2() != 1 && npc2_state_flag == 0) {
+					NpcMoving2();
+				}
+				if (CheckNPCState3() != 1 && npc3_state_flag == 0) {
+					NpcMoving3();
+				}
+				if (npc1_state_flag == 1) {
+					NPC1_die();
+				}
+				if (npc2_state_flag == 1) {
+					NPC2_die();
+				}
+				if (npc3_state_flag == 1) {
+					NPC3_die();
+				}
+				if (npc1_state_flag == 1 && npc2_state_flag == 1 && npc3_state_flag == 1) {
+					//printf("next stage!!!\n");
+
 					Sleep(3000);
 					break;
 				}
@@ -224,11 +347,11 @@ int main(void)
 				printf("\n");
 			}*/
 
-			if (game_round >= 0)
+			if (game_round >= 3)
 				sky_bomb_drop();
 		}
 	}
-
+	Clear_Letterdrawing();
 	while (1)
 	{
 		Sleep(10000);
