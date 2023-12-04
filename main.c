@@ -42,7 +42,7 @@ extern int mapModel[HEIGHT][WIDTH];
 extern int mapModel2[HEIGHT][WIDTH];
 extern int mapModel3[HEIGHT][WIDTH];
 
-
+int game_round;
 
 int main(void)
 {
@@ -80,7 +80,7 @@ int main(void)
 
 	NPC_current_Time = 0;
 
-	for (int game_round = 0; game_round < 3; game_round++)
+	for (game_round = 0; game_round < 3; game_round++)
 	{
 		stage_start_time = clock();
 		PlayerState = 1;
