@@ -81,6 +81,7 @@ void NPCavoidBOMB2(Queue2* safety, int x, int y) {
 					mapModel[ny][nx] == STATE_ITEM_BOMB_MAX ||
 					mapModel[ny][nx] == STATE_ITEM_BOMB_RANGE ||
 					mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE ||
+					mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE_REVERSE ||
 					NPCmapModel[ny][nx] == STATE_NPC_WARNING)) {
 
 					rear2++;
@@ -124,7 +125,7 @@ void bfs2(int x, int y) {
 					if (((mapModel[ny][nx] == STATE_EMPTY ||
 						mapModel[ny][nx] == STATE_ITEM_BOMB_MAX ||
 						mapModel[ny][nx] == STATE_ITEM_BOMB_RANGE ||
-						mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE) &&
+						mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE || mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE_REVERSE) &&
 						NPCmapModel[ny][nx] != STATE_NPC_WARNING) &&
 						mapModel[ny][nx] != STATE_BOMB_SETTING &&
 						mapModel[ny][nx] != STATE_BOX &&

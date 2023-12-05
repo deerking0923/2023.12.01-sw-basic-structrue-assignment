@@ -84,6 +84,7 @@ void NPCavoidBOMB3(Queue3* safety, int x, int y) {
 					mapModel[ny][nx] == STATE_ITEM_BOMB_MAX ||
 					mapModel[ny][nx] == STATE_ITEM_BOMB_RANGE ||
 					mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE ||
+					mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE_REVERSE ||
 					NPCmapModel[ny][nx] == STATE_NPC_WARNING)) {
 
 					rear3++;
@@ -127,7 +128,7 @@ void bfs3(int x, int y) {
 					if (((mapModel[ny][nx] == STATE_EMPTY || // 아이템 무시하고 가도록, 나중에 STATE_ITEM_EXIST로 한번에 비교
 						mapModel[ny][nx] == STATE_ITEM_BOMB_MAX ||
 						mapModel[ny][nx] == STATE_ITEM_BOMB_RANGE ||
-						mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE) &&
+						mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE || mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE_REVERSE) &&
 						NPCmapModel[ny][nx] != STATE_NPC_WARNING) &&
 						mapModel[ny][nx] != STATE_BOMB_SETTING &&
 						mapModel[ny][nx] != STATE_BOX &&

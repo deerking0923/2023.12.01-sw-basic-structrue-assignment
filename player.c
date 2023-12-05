@@ -167,7 +167,7 @@ int CheckPlayerState()
 		SetCurrentCursorPos(3, HEIGHT + GBOARD_ORIGIN_Y);
 
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 5); // 어두운 보라
-		Sleep(500);
+		Sleep(700);
 		GameOver_Mapdrawing();
 		//printf("Player down    Game Over!\n");
 		return (1);

@@ -205,8 +205,9 @@ int CheckNPCState2()
 	}
 	if (checkPlayer_Killed_NPC(npcCurPosX2, npcCurPosY2, PlayerCurPosX, PlayerCurPosY) == 1) {
 		SetCurrentCursorPos(3, HEIGHT + GBOARD_ORIGIN_Y);
-		printf("Player down    Game Over!\n\n\n");
-
+		
+		Sleep(700);
+		GameOver_Mapdrawing();
 		return (2);
 	}
 	return (0);

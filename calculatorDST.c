@@ -80,6 +80,7 @@ void NPCavoidBOMB(Queue* safety, int x, int y) {
 					mapModel[ny][nx] == STATE_ITEM_BOMB_MAX ||
 					mapModel[ny][nx] == STATE_ITEM_BOMB_RANGE ||
 					mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE ||
+					mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE_REVERSE ||
 					NPCmapModel[ny][nx] == STATE_NPC_WARNING)) {
 
 					rear++;
@@ -123,7 +124,7 @@ void bfs(int x, int y) {
 					if (((mapModel[ny][nx] == STATE_EMPTY || // 아이템 무시하고 가도록, 나중에 STATE_ITEM_EXIST로 한번에 비교
 						mapModel[ny][nx] == STATE_ITEM_BOMB_MAX ||
 						mapModel[ny][nx] == STATE_ITEM_BOMB_RANGE ||
-						mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE) &&
+						mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE || mapModel[ny][nx] == STATE_ITEM_CHARACTER_MOVE_REVERSE) &&
 						NPCmapModel[ny][nx] != STATE_NPC_WARNING) &&
 						mapModel[ny][nx] != STATE_BOMB_SETTING &&
 						mapModel[ny][nx] != STATE_BOX &&
@@ -135,6 +136,8 @@ void bfs(int x, int y) {
 						q[rear].dist = q[front].dist + 1;
 						visited[ny][nx] = 1;
 						weight[ny][nx] = q[rear].dist;
+
+						
 
 
 						if (nx * 2 == PlayerCurPosX && ny == PlayerCurPosY) { // 만약 탐색중에 플레이어 위치를 발견하면

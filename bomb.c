@@ -388,6 +388,7 @@ void TimeCheck_BOOM()
 		if (cur_time - curBOOM->start_time >= 700) {
 			// bomb boom 지우는 함수 사용
 			set_Empty(curBOOM->x, curBOOM->y);
+			NPCmapModel[curBOOM->y][curBOOM->x] = STATE_EMPTY;
 			// BOOM 노드 삭제 함수 사용
 			if (curBOOM->prev == NULL)
 				boomhead->next = curBOOM->next;

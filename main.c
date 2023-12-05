@@ -338,11 +338,11 @@ int main(void)
 					break;
 				}
 			}
-			/*if문 끝나는 지점*/
+			
 			/*SetCurrentCursorPos(0, 20);
 			for (int i = 0; i < HEIGHT; i++) {
 				for (int j = 0; j < WIDTH; j++) {
-					printf("%4d", mapModel[i][j]);
+					printf("%4d", NPCmapModel[i][j]);
 				}
 				printf("\n");
 			}*/
