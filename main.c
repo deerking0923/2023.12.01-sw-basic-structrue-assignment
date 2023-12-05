@@ -43,6 +43,9 @@ extern int mapModel[HEIGHT][WIDTH];
 extern int mapModel2[HEIGHT][WIDTH];
 extern int mapModel3[HEIGHT][WIDTH];
 
+extern int bomb_max ;
+extern int player_bomb_len;
+
 int game_round;
 
 int main(void)
@@ -83,6 +86,9 @@ int main(void)
 
 	for (game_round = 0; game_round < 6; game_round++)
 	{
+		bomb_max = 1;
+		player_bomb_len = 1;
+
 		stage_start_time = clock();
 		PlayerState = 1;
 		PlayerCurPosX = arrX_to_cursorX(WIDTH - 3);		//get_Player_starting_point_x();
