@@ -2,14 +2,14 @@
 
 #include "define_state.h"
 
-#include <stdio.h>		//ë””ë²„ê·¸ìš©
-#include <stdlib.h>		//rand(), srand() í•¨ìˆ˜
-#include <time.h>		//time(NULL) ì‚¬ìš©í•˜ê¸° ìœ„í•´
+#include <stdio.h>		//µğ¹ö±×¿ë
+#include <stdlib.h>		//rand(), srand() ÇÔ¼ö
+#include <time.h>		//time(NULL) »ç¿ëÇÏ±â À§ÇØ
 
 #include "cursor.h"
 
 extern unsigned long long recent_sky_bomb_drop_time = 0;
-extern int PlayerCurPosX, PlayerCurPosY; // í”Œë ˆì´ì–´ í˜„ì¬ ì¢Œí‘œ
+extern int PlayerCurPosX, PlayerCurPosY; // ÇÃ·¹ÀÌ¾î ÇöÀç ÁÂÇ¥
 extern int npcCurPosX, npcCurPosY;
 extern int npcCurPosX2, npcCurPosY2;
 extern int npcCurPosX3, npcCurPosY3;
@@ -267,7 +267,7 @@ int mapModel_firework[HEIGHT][WIDTH] =
 
 
 
-// ê¸°ì¡´ mapModel 11*11
+// ±âÁ¸ mapModel 11*11
 //int mapModel[HEIGHT][WIDTH] =
 //{
 //	{ STATE_WALL, STATE_WALL, STATE_WALL, STATE_WALL, STATE_WALL, STATE_WALL, STATE_WALL, STATE_WALL, STATE_WALL, STATE_WALL, STATE_WALL },
@@ -289,7 +289,7 @@ int mapModel_firework[HEIGHT][WIDTH] =
 //
 
 //
-////ì•„ë˜ì™€ ê°™ì€ í˜•íƒœ
+////¾Æ·¡¿Í °°Àº ÇüÅÂ
 ///*
 //9  9 9 9 9 9 9 9 9 9  9
 //
@@ -315,14 +315,14 @@ int mapModel_firework[HEIGHT][WIDTH] =
 //	int random_num;
 //	int i = 0;
 //
-//	// ì¤‘ë³µëœ ê°’ì„ í™•ì¸í•˜ê¸° ìœ„í•´ test[10]ë°°ì—´ì„ ë§Œë“¦
-//	// random_num ì´ í•˜ë‚˜ ë‚˜ì˜¤ë©´ testë°°ì—´ì„ í™•ì¸
-//	// test[random_num]ì˜ ê°’ì´ 1ì´ ì•„ë‹ˆë©´ 
-//	// test[random_num]ì˜ ê°’ì— 1ëŒ€ì… í›„ numë°°ì—´ì— random_num ê°’ ì¶”ê°€
-//	// num ë°°ì—´ì„ ë‹¤ ì±„ìš¸ë•Œ ê¹Œì§€ ìœ„ ê³¼ì • ë°˜ë³µ
+//	// Áßº¹µÈ °ªÀ» È®ÀÎÇÏ±â À§ÇØ test[10]¹è¿­À» ¸¸µê
+//	// random_num ÀÌ ÇÏ³ª ³ª¿À¸é test¹è¿­À» È®ÀÎ
+//	// test[random_num]ÀÇ °ªÀÌ 1ÀÌ ¾Æ´Ï¸é 
+//	// test[random_num]ÀÇ °ª¿¡ 1´ëÀÔ ÈÄ num¹è¿­¿¡ random_num °ª Ãß°¡
+//	// num ¹è¿­À» ´Ù Ã¤¿ï¶§ ±îÁö À§ °úÁ¤ ¹İº¹
 //
 //	while (i < 5) {
-//		random_num = (rand() % 9);		//0 ~ 8 ì¤‘ì— ëœë¤í•œ ìˆ˜
+//		random_num = (rand() % 9);		//0 ~ 8 Áß¿¡ ·£´ıÇÑ ¼ö
 //		if (test[random_num] == 0)
 //		{
 //			test[random_num] = 1;
@@ -331,7 +331,7 @@ int mapModel_firework[HEIGHT][WIDTH] =
 //		}
 //	}
 //
-//	//ë””ë²„ê·¸ìš©
+//	//µğ¹ö±×¿ë
 //	/*for (i = 0; i < 5; ++i)
 //		printf(" %d", num[i]);
 //	printf("\n");*/
@@ -339,7 +339,7 @@ int mapModel_firework[HEIGHT][WIDTH] =
 //	return num;
 //}
 //
-//void resetMap()				// ì™¼ìª½ ìœ„, ì™¼ìª½ ì•„ë˜, ì˜¤ë¥¸ìª½ ìœ„, ì˜¤ë¥¸ìª½ ì•„ë˜ ì²˜ìŒ ì‹œì‘í• ë•Œ, ì‹­ìê°€ë¡œ ì›€ì§ì¼ ìˆ˜ ìˆë„ë¡ ì´ˆê¸°í™”
+//void resetMap()				// ¿ŞÂÊ À§, ¿ŞÂÊ ¾Æ·¡, ¿À¸¥ÂÊ À§, ¿À¸¥ÂÊ ¾Æ·¡ Ã³À½ ½ÃÀÛÇÒ¶§, ½ÊÀÚ°¡·Î ¿òÁ÷ÀÏ ¼ö ÀÖµµ·Ï ÃÊ±âÈ­
 //{
 //	mapModel[2 - 1][2 - 1] = STATE_BOX;
 //	mapModel[2 - 1][2 + 1] = STATE_BOX;
@@ -362,7 +362,7 @@ int mapModel_firework[HEIGHT][WIDTH] =
 //	mapModel[HEIGHT - 3 + 1][WIDTH - 3 + 1] = STATE_BOX;
 //}
 //
-//void generateMap()			//ë§µìƒì„±
+//void generateMap()			//¸Ê»ı¼º
 //{
 //	resetMap();
 //
@@ -375,18 +375,18 @@ int mapModel_firework[HEIGHT][WIDTH] =
 //	*/
 //
 //	/*
-//	mapì˜ êµ¬ì—­ì„
+//	mapÀÇ ±¸¿ªÀ»
 //	1 2 3
 //	4 5 6
-//	7 8 9 ë¡œ ë‚˜ëˆ„ì—ˆì„ë•Œ
+//	7 8 9 ·Î ³ª´©¾úÀ»¶§
 //	*/
-//	// 4ë²ˆêµ¬ì—­ ì±„ìš°ê¸°
+//	// 4¹ø±¸¿ª Ã¤¿ì±â
 //	for (int i = 0; i < 5; ++i)
 //	{
 //		mapModel[(num[i] / 3) + 1][3 + num[i] % 3 + 1] = STATE_BOX;
 //	}
 //
-//	//2ë²ˆêµ¬ì—­ ì±„ìš°ê¸°
+//	//2¹ø±¸¿ª Ã¤¿ì±â
 //	num = output_random_5_num_arr();
 //	for (int i = 0; i < 5; ++i)
 //	{
@@ -394,7 +394,7 @@ int mapModel_firework[HEIGHT][WIDTH] =
 //	}
 //	free(num);
 //
-//	//5ë²ˆêµ¬ì—­ ì±„ìš°ê¸°
+//	//5¹ø±¸¿ª Ã¤¿ì±â
 //	num = output_random_5_num_arr();
 //	for (int i = 0; i < 5; ++i)
 //	{
@@ -402,7 +402,7 @@ int mapModel_firework[HEIGHT][WIDTH] =
 //	}
 //	free(num);
 //
-//	//8ë²ˆêµ¬ì—­ ì±„ìš°ê¸°
+//	//8¹ø±¸¿ª Ã¤¿ì±â
 //	num = output_random_5_num_arr();
 //	for (int i = 0; i < 5; ++i)
 //	{
@@ -410,7 +410,7 @@ int mapModel_firework[HEIGHT][WIDTH] =
 //	}
 //	free(num);
 //
-//	//6ë²ˆêµ¬ì—­ ì±„ìš°ê¸°
+//	//6¹ø±¸¿ª Ã¤¿ì±â
 //	num = output_random_5_num_arr();
 //	for (int i = 0; i < 5; ++i)
 //	{
@@ -431,7 +431,7 @@ int mapModel_firework[HEIGHT][WIDTH] =
 
 
 
-void drawMaps()		//ë§µì„ í™”ë©´ì— ì¶œë ¥
+void drawMaps()		//¸ÊÀ» È­¸é¿¡ Ãâ·Â
 {
 	int x, y;
 	int cursX, cursY;
@@ -446,19 +446,19 @@ void drawMaps()		//ë§µì„ í™”ë©´ì— ì¶œë ¥
 
 			if (mapModel[y][x] == STATE_BOX)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // ë…¸ë‘
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // ³ë¶û
 
-				printf("â– ");
+				printf("¡á");
 			}
 			else if (mapModel[y][x] == STATE_WALL)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6); // ì–´ë‘ìš´ ë…¸ë‘
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6); // ¾îµÎ¿î ³ë¶û
 
-				printf("â–©");
+				printf("¢Ì");
 			}
 			else { printf("  "); }
 
-			//draw_3_3maps(x, y, cursX, cursY);		//ë°°ì—´ì˜ 1ì¹¸ì„ í™”ë©´ì˜ 3*3 í¬ê¸°ë¡œ í‘œí˜„
+			//draw_3_3maps(x, y, cursX, cursY);		//¹è¿­ÀÇ 1Ä­À» È­¸éÀÇ 3*3 Å©±â·Î Ç¥Çö
 		}
 	}
 	SetCurrentCursorPos((GBOARD_ORIGIN_X/*BOARD_ORIGIN_X*/ + WIDTH * 2 + 1), HEIGHT + 1);
@@ -469,18 +469,18 @@ void drawMaps()		//ë§µì„ í™”ë©´ì— ì¶œë ¥
 //	for (int yy = 0; yy < 3; ++yy) {
 //		for (int xx = 0; xx < 3; ++xx)
 //		{
-//			SetCurrentCursorPos(cursX + xx * 2, cursY + yy);	//ë„¤ëª¨ í•œì¹¸ì´ ì»¤ì„œ 2ê°œë¥¼ ì°¨ì§€í•˜ë¯€ë¡œ 2 * xxë¥¼ í•˜ë©° ì»¤ì„œìœ„ì¹˜ ë³€ê²½
+//			SetCurrentCursorPos(cursX + xx * 2, cursY + yy);	//³×¸ğ ÇÑÄ­ÀÌ Ä¿¼­ 2°³¸¦ Â÷ÁöÇÏ¹Ç·Î 2 * xx¸¦ ÇÏ¸ç Ä¿¼­À§Ä¡ º¯°æ
 //
 //			if (mapModel[y][x] == 1)
 //			{
-//				printf("â– ");
+//				printf("¡á");
 //			}
 //			else { printf("  "); }
 //		}
 //	}
 //}
 
-int checkObject_can_go(int cursorX, int cursorY)		//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œë¡œ ì´ë™í•  ìˆ˜ ìˆëŠ”ì§€
+int checkObject_can_go(int cursorX, int cursorY)		//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥·Î ÀÌµ¿ÇÒ ¼ö ÀÖ´ÂÁö
 {
 	int x = (cursorX - GBOARD_ORIGIN_X) / 2;
 	int y = cursorY - GBOARD_ORIGIN_Y;
@@ -493,7 +493,7 @@ int checkObject_can_go(int cursorX, int cursorY)		//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œë¡
 		return (1);
 	return (0);
 }
-int checkObject_Item(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— ì•„ì´í…œì´ ìˆëŠ”ì§€
+int checkObject_Item(int cursorX, int cursorY)			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö
 {
 	int x = (cursorX - GBOARD_ORIGIN_X) / 2;
 	int y = cursorY - GBOARD_ORIGIN_Y;
@@ -503,7 +503,7 @@ int checkObject_Item(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì—
 	return (0);
 }
 
-int checkObject_bomb_max_Item(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— ì•„ì´í…œì´ ìˆëŠ”ì§€
+int checkObject_bomb_max_Item(int cursorX, int cursorY)			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö
 {
 	int x = (cursorX - GBOARD_ORIGIN_X) / 2;
 	int y = cursorY - GBOARD_ORIGIN_Y;
@@ -512,7 +512,7 @@ int checkObject_bomb_max_Item(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§„ 
 		return (1);
 	return (0);
 }
-int checkObject_bomb_range_Item(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— ì•„ì´í…œì´ ìˆëŠ”ì§€
+int checkObject_bomb_range_Item(int cursorX, int cursorY)			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö
 {
 	int x = (cursorX - GBOARD_ORIGIN_X) / 2;
 	int y = cursorY - GBOARD_ORIGIN_Y;
@@ -521,7 +521,7 @@ int checkObject_bomb_range_Item(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§
 		return (1);
 	return (0);
 }
-int checkObject_character_Move_Item(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— ì•„ì´í…œì´ ìˆëŠ”ì§€
+int checkObject_character_Move_Item(int cursorX, int cursorY)			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö
 {
 	int x = (cursorX - GBOARD_ORIGIN_X) / 2;
 	int y = cursorY - GBOARD_ORIGIN_Y;
@@ -532,7 +532,7 @@ int checkObject_character_Move_Item(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì
 }
 
 
-int checkObject_boom(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œê°€ í­ë°œë²”ìœ„ì¸ì§€
+int checkObject_boom(int cursorX, int cursorY)			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥°¡ Æø¹ß¹üÀ§ÀÎÁö
 {
 	int x = (cursorX - GBOARD_ORIGIN_X) / 2;
 	int y = (cursorY - GBOARD_ORIGIN_Y);
@@ -541,7 +541,7 @@ int checkObject_boom(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œê°€
 		return (1);
 	return (0);
 }
-int checkObject_box(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— ë¶€ì‹¤ ìˆ˜ ìˆëŠ” ì¥ì• ë¬¼ì´ ìˆëŠ”ì§€
+int checkObject_box(int cursorX, int cursorY)			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ºÎ½Ç ¼ö ÀÖ´Â Àå¾Ö¹°ÀÌ ÀÖ´ÂÁö
 {
 	int x = (cursorX - GBOARD_ORIGIN_X) / 2;
 	int y = (cursorY - GBOARD_ORIGIN_Y);
@@ -550,7 +550,7 @@ int checkObject_box(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— 
 		return (1);
 	return (0);
 }
-int checkObject_wall(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— ë¶€ì‹¤ ìˆ˜ ì—†ëŠ” ì¥ì• ë¬¼ì´ ìˆëŠ”ì§€
+int checkObject_wall(int cursorX, int cursorY)			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ºÎ½Ç ¼ö ¾ø´Â Àå¾Ö¹°ÀÌ ÀÖ´ÂÁö
 {
 	int x = (cursorX - GBOARD_ORIGIN_X) / 2;
 	int y = (cursorY - GBOARD_ORIGIN_Y);
@@ -570,7 +570,7 @@ int checkObject_exist_bomb(int cursorX, int cursorY)
 	return (0);
 }
 
-void gernerate_Item(int cursorX, int cursorY) // í•´ë‹¹ ì¢Œí‘œì— ì•„ì´í…œ ìƒì„±
+void gernerate_Item(int cursorX, int cursorY) // ÇØ´ç ÁÂÇ¥¿¡ ¾ÆÀÌÅÛ »ı¼º
 {
 	int x = (cursorX - GBOARD_ORIGIN_X) / 2;
 	int y = (cursorY - GBOARD_ORIGIN_Y);
@@ -625,7 +625,7 @@ void draw_Item_bomb_max(int cursorX, int cursorY)
 {
 	COORD pre = GetCurrentCursorPos();
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11); // í•˜ëŠ˜
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11); // ÇÏ´Ã
 
 	SetCurrentCursorPos(cursorX, cursorY);
 	printf("  ");
@@ -635,29 +635,29 @@ void draw_Item_bomb_max(int cursorX, int cursorY)
 	SetCurrentCursorPos(pre.X, pre.Y);
 }
 
-void draw_Item_bomb_range(int cursorX, int cursorY) // bomb max ì¦ê°€ ì•„ì´í…œ ì¶œë ¥
+void draw_Item_bomb_range(int cursorX, int cursorY) // bomb max Áõ°¡ ¾ÆÀÌÅÛ Ãâ·Â
 {
 	COORD pre = GetCurrentCursorPos();
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11); // í•˜ëŠ˜
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11); // ÇÏ´Ã
 
 	SetCurrentCursorPos(cursorX, cursorY);
 	printf("  ");
 	SetCurrentCursorPos(cursorX, cursorY);
-	printf("â†”");
+	printf("¡ê");
 
 	SetCurrentCursorPos(pre.X, pre.Y);
 }
-void draw_Item_chracter_move(int cursorX, int cursorY) // bomb max ì¦ê°€ ì•„ì´í…œ ì¶œë ¥
+void draw_Item_chracter_move(int cursorX, int cursorY) // bomb max Áõ°¡ ¾ÆÀÌÅÛ Ãâ·Â
 {
 	COORD pre = GetCurrentCursorPos();
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11); // í•˜ëŠ˜ 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11); // ÇÏ´Ã 
 
 	SetCurrentCursorPos(cursorX, cursorY);
 	printf("  ");
 	SetCurrentCursorPos(cursorX, cursorY);
-	printf("â–¶");
+	printf("¢º");
 
 	SetCurrentCursorPos(pre.X, pre.Y);
 }
@@ -665,7 +665,7 @@ void draw_Item_chracter_move(int cursorX, int cursorY) // bomb max ì¦ê°€ ì•„ì´
 int get_Player_starting_point_x()
 {
 	int x = rand() % 2;
-	// (1, 1) / (7, 1) / (1, 7) / (7, 7) ì¤‘ í•˜ë‚˜ì—ì„œ ì‹œì‘
+	// (1, 1) / (7, 1) / (1, 7) / (7, 7) Áß ÇÏ³ª¿¡¼­ ½ÃÀÛ
 	if (x == 0)
 	{
 		x = (GBOARD_ORIGIN_X + 2) * 2;
@@ -681,7 +681,7 @@ int get_Player_starting_point_x()
 int get_Player_starting_point_y()
 {
 	int y = rand() % 2;
-	// (1, 1) / (7, 1) / (1, 7) / (7, 7) ì¤‘ í•˜ë‚˜ì—ì„œ ì‹œì‘
+	// (1, 1) / (7, 1) / (1, 7) / (7, 7) Áß ÇÏ³ª¿¡¼­ ½ÃÀÛ
 	if (y == 0)
 	{
 		y = (GBOARD_ORIGIN_Y + 2);
@@ -704,15 +704,15 @@ void set_Bomb(int arrX, int arrY)
 	mapModel[arrY][arrX] = STATE_BOMB_SETTING;
 	SetCurrentCursorPos(cursorX, cursorY);
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4); // ì–´ë‘ìš´ ë¹¨ê°•
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4); // ¾îµÎ¿î »¡°­
 
 	printf("");
-	printf("âŠ™");
+	printf("¢Á");
 
 	SetCurrentCursorPos(pre.X, pre.Y);
 }
 
-void set_Empty(int arrX, int arrY)				//í•´ë‹¹ ì¢Œí‘œ ê³µë°±ìœ¼ë¡œ ë§Œë“¤ê¸°
+void set_Empty(int arrX, int arrY)				//ÇØ´ç ÁÂÇ¥ °ø¹éÀ¸·Î ¸¸µé±â
 {
 
 	COORD pre = GetCurrentCursorPos();
@@ -740,11 +740,11 @@ void set_Bomb_Boom(int arrX, int arrY)
 	mapModel[arrY][arrX] = STATE_BOMB_BOOM;
 	SetCurrentCursorPos(cursorX, cursorY);
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12); // ë¹¨ê°•
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12); // »¡°­
 
 	printf("  ");
 	SetCurrentCursorPos(cursorX, cursorY);
-	printf("â™¨");
+	printf("¢Í");
 
 	SetCurrentCursorPos(pre.X, pre.Y);
 }
@@ -756,7 +756,7 @@ int checkPlayer_Killed_NPC(int npcCurPosX, int npcCurPosY, int PlayerCurPosX, in
 	return (0);
 }
 
-void set_NPC_Warning(int arrX, int arrY)		//í•´ë‹¹ ì¢Œí‘œì— NPC Warning updateí•˜ê¸°
+void set_NPC_Warning(int arrX, int arrY)		//ÇØ´ç ÁÂÇ¥¿¡ NPC Warning updateÇÏ±â
 {
 	mapModel[arrY][arrX] = STATE_NPC_WARNING;
 }
@@ -795,7 +795,7 @@ int check_over_GameBoard_HEIGHT(int arrY)
 
 
 
-// ìˆ˜ì • í•„ìš”
+// ¼öÁ¤ ÇÊ¿ä
 //void npc_Warning_update(int arrX, int arrY, Bomb* newbomb)
 //{
 //	int x = newbomb->x;
@@ -812,23 +812,23 @@ int check_over_GameBoard_HEIGHT(int arrY)
 //			w = getnode_BOOM(x, y - i, time);
 //			insertitem_BOOM(w);
 //		}
-//		else if (checkObject_box(arrX_to_cursorX(x), arrY_to_cursorY(y - i))) { //ë‚˜ë¬´ ìƒìë¼ë©´
+//		else if (checkObject_box(arrX_to_cursorX(x), arrY_to_cursorY(y - i))) { //³ª¹« »óÀÚ¶ó¸é
 //			
 // (x, y - i);
 //			gernerate_Item(arrX_to_cursorX(x), arrY_to_cursorY(y - i));
-//			break;          // ë‚˜ë¬´ ìƒì ë’¤ë¡œ í­íƒ„ì˜ ë²”ìœ„ê°€ í¼ì§€ì§€ ì•Šê²Œ
+//			break;          // ³ª¹« »óÀÚ µÚ·Î ÆøÅºÀÇ ¹üÀ§°¡ ÆÛÁöÁö ¾Ê°Ô
 //		}
-//		else if (checkObject_Item(arrX_to_cursorX(x), arrY_to_cursorY(y - i))) { //ì•„ì´í…œì´ ìˆë‹¤ë©´
-//			set_Empty(x, y - i);     //ì•„ì´í…œ íŒŒê´´, ê³µë°±ìœ¼ë¡œ ë³€ê²½
+//		else if (checkObject_Item(arrX_to_cursorX(x), arrY_to_cursorY(y - i))) { //¾ÆÀÌÅÛÀÌ ÀÖ´Ù¸é
+//			set_Empty(x, y - i);     //¾ÆÀÌÅÛ ÆÄ±«, °ø¹éÀ¸·Î º¯°æ
 //		}
-//		else if (checkObject_exist_bomb(arrX_to_cursorX(x), arrY_to_cursorY(y - i))) { //ë§Œì•½ ë‹¤ë¥¸ í­íƒ„ì´ ìˆë‹¤ë©´
-//			?BombSwich_On(x, y - i); //ì¬ê·€í˜¸ì¶œ
+//		else if (checkObject_exist_bomb(arrX_to_cursorX(x), arrY_to_cursorY(y - i))) { //¸¸¾à ´Ù¸¥ ÆøÅºÀÌ ÀÖ´Ù¸é
+//			?BombSwich_On(x, y - i); //Àç±ÍÈ£Ãâ
 //			break;
 //		}
 //		else
 //			;
 //	}
-//	//ì•„ë˜ë¡œ í„°ì§€ëŠ” ë²”ìœ„ í›‘ê¸°
+//	//¾Æ·¡·Î ÅÍÁö´Â ¹üÀ§ ÈÈ±â
 //	for (int i = 1; i <= len; i++)
 //	{
 //		if (check_over_GameBoard_HEIGHT(y + i))
@@ -838,22 +838,22 @@ int check_over_GameBoard_HEIGHT(int arrY)
 //			w = getnode_BOOM(x, y + i, time);
 //			insertitem_BOOM(w);
 //		}
-//		else if (checkObject_box(arrX_to_cursorX(x), arrY_to_cursorY(y + i))) { //ë‚˜ë¬´ ìƒìë¼ë©´
+//		else if (checkObject_box(arrX_to_cursorX(x), arrY_to_cursorY(y + i))) { //³ª¹« »óÀÚ¶ó¸é
 //			set_Empty(x, y + i);
 //			gernerate_Item(arrX_to_cursorX(x), arrY_to_cursorY(y + i));
-//			break;          // ë‚˜ë¬´ ìƒì ë’¤ë¡œ í­íƒ„ì˜ ë²”ìœ„ê°€ í¼ì§€ì§€ ì•Šê²Œ
+//			break;          // ³ª¹« »óÀÚ µÚ·Î ÆøÅºÀÇ ¹üÀ§°¡ ÆÛÁöÁö ¾Ê°Ô
 //		}
-//		else if (checkObject_Item(arrX_to_cursorX(x), arrY_to_cursorY(y + i))) { //ì•„ì´í…œì´ ìˆë‹¤ë©´
-//			set_Empty(x, y + i);     //ì•„ì´í…œ íŒŒê´´, ê³µë°±ìœ¼ë¡œ ë³€ê²½
+//		else if (checkObject_Item(arrX_to_cursorX(x), arrY_to_cursorY(y + i))) { //¾ÆÀÌÅÛÀÌ ÀÖ´Ù¸é
+//			set_Empty(x, y + i);     //¾ÆÀÌÅÛ ÆÄ±«, °ø¹éÀ¸·Î º¯°æ
 //		}
-//		else if (checkObject_exist_bomb(arrX_to_cursorX(x), arrY_to_cursorY(y + i))) { //ë§Œì•½ ë‹¤ë¥¸ í­íƒ„ì´ ìˆë‹¤ë©´
-//			?BombSwich_On(x, y + i); //ì¬ê·€í˜¸ì¶œ
+//		else if (checkObject_exist_bomb(arrX_to_cursorX(x), arrY_to_cursorY(y + i))) { //¸¸¾à ´Ù¸¥ ÆøÅºÀÌ ÀÖ´Ù¸é
+//			?BombSwich_On(x, y + i); //Àç±ÍÈ£Ãâ
 //			break;
 //		}
 //		else
 //			;
 //	}
-//	// ì¢Œë¡œ í„°ì§€ëŠ” ë²”ìœ„ í›‘ê¸°
+//	// ÁÂ·Î ÅÍÁö´Â ¹üÀ§ ÈÈ±â
 //	for (int i = 1; i <= len; i++)
 //	{
 //		if (check_over_GameBoard_Width(x - i))
@@ -863,22 +863,22 @@ int check_over_GameBoard_HEIGHT(int arrY)
 //			w = getnode_BOOM(x - i, y, time);
 //			insertitem_BOOM(w);
 //		}
-//		else if (checkObject_box(arrX_to_cursorX(x - i), arrY_to_cursorY(y))) { //ë‚˜ë¬´ ìƒìë¼ë©´
+//		else if (checkObject_box(arrX_to_cursorX(x - i), arrY_to_cursorY(y))) { //³ª¹« »óÀÚ¶ó¸é
 //			set_Empty(x - i, y);
 //			gernerate_Item(arrX_to_cursorX(x - i), arrY_to_cursorY(y));
-//			break;          // ë‚˜ë¬´ ìƒì ë’¤ë¡œ í­íƒ„ì˜ ë²”ìœ„ê°€ í¼ì§€ì§€ ì•Šê²Œ
+//			break;          // ³ª¹« »óÀÚ µÚ·Î ÆøÅºÀÇ ¹üÀ§°¡ ÆÛÁöÁö ¾Ê°Ô
 //		}
-//		else if (checkObject_Item(arrX_to_cursorX(x - i), arrY_to_cursorY(y))) { //ì•„ì´í…œì´ ìˆë‹¤ë©´
-//			set_Empty(x - i, y);     //ì•„ì´í…œ íŒŒê´´, ê³µë°±ìœ¼ë¡œ ë³€ê²½
+//		else if (checkObject_Item(arrX_to_cursorX(x - i), arrY_to_cursorY(y))) { //¾ÆÀÌÅÛÀÌ ÀÖ´Ù¸é
+//			set_Empty(x - i, y);     //¾ÆÀÌÅÛ ÆÄ±«, °ø¹éÀ¸·Î º¯°æ
 //		}
-//		else if (checkObject_exist_bomb(arrX_to_cursorX(x - i), arrY_to_cursorY(y))) { //ë§Œì•½ ë‹¤ë¥¸ í­íƒ„ì´ ìˆë‹¤ë©´
-//			?BombSwich_On(x - i, y); //ì¬ê·€í˜¸ì¶œ
+//		else if (checkObject_exist_bomb(arrX_to_cursorX(x - i), arrY_to_cursorY(y))) { //¸¸¾à ´Ù¸¥ ÆøÅºÀÌ ÀÖ´Ù¸é
+//			?BombSwich_On(x - i, y); //Àç±ÍÈ£Ãâ
 //			break;
 //		}
 //		else
 //			;
 //	}
-//	// ìš°ë¡œ í„°ì§€ëŠ” ë²”ìœ„ í›‘ê¸°
+//	// ¿ì·Î ÅÍÁö´Â ¹üÀ§ ÈÈ±â
 //	for (int i = 1; i <= len; i++)
 //	{
 //		if (check_over_GameBoard_Width(x + i))
@@ -888,16 +888,16 @@ int check_over_GameBoard_HEIGHT(int arrY)
 //			w = getnode_BOOM(x + i, y, time);
 //			insertitem_BOOM(w);
 //		}
-//		else if (checkObject_box(arrX_to_cursorX(x + i), arrY_to_cursorY(y))) { //ë‚˜ë¬´ ìƒìë¼ë©´
+//		else if (checkObject_box(arrX_to_cursorX(x + i), arrY_to_cursorY(y))) { //³ª¹« »óÀÚ¶ó¸é
 //			set_Empty(x + i, y);
 //			gernerate_Item(arrX_to_cursorX(x + i), arrY_to_cursorY(y));
-//			break;          // ë‚˜ë¬´ ìƒì ë’¤ë¡œ í­íƒ„ì˜ ë²”ìœ„ê°€ í¼ì§€ì§€ ì•Šê²Œ
+//			break;          // ³ª¹« »óÀÚ µÚ·Î ÆøÅºÀÇ ¹üÀ§°¡ ÆÛÁöÁö ¾Ê°Ô
 //		}
-//		else if (checkObject_Item(arrX_to_cursorX(x + i), arrY_to_cursorY(y))) { //ì•„ì´í…œì´ ìˆë‹¤ë©´
-//			set_Empty(x + i, y);     //ì•„ì´í…œ íŒŒê´´, ê³µë°±ìœ¼ë¡œ ë³€ê²½
+//		else if (checkObject_Item(arrX_to_cursorX(x + i), arrY_to_cursorY(y))) { //¾ÆÀÌÅÛÀÌ ÀÖ´Ù¸é
+//			set_Empty(x + i, y);     //¾ÆÀÌÅÛ ÆÄ±«, °ø¹éÀ¸·Î º¯°æ
 //		}
-//		else if (checkObject_exist_bomb(arrX_to_cursorX(x + i), arrY_to_cursorY(y))) { //ë§Œì•½ ë‹¤ë¥¸ í­íƒ„ì´ ìˆë‹¤ë©´
-//			?BombSwich_On(x + i, y); //ì¬ê·€í˜¸ì¶œ
+//		else if (checkObject_exist_bomb(arrX_to_cursorX(x + i), arrY_to_cursorY(y))) { //¸¸¾à ´Ù¸¥ ÆøÅºÀÌ ÀÖ´Ù¸é
+//			?BombSwich_On(x + i, y); //Àç±ÍÈ£Ãâ
 //			break;
 //		}
 //		else
@@ -906,7 +906,7 @@ int check_over_GameBoard_HEIGHT(int arrY)
 //}
 
 
-// 11ì›” 20ì¼ map_box
+// 11¿ù 20ÀÏ map_box
 
 
 
@@ -1005,31 +1005,31 @@ void set_mapModel3()
 
 void reset_npcMapModel()
 {
-	//ì²« í–‰ ì´ˆê¸°í™”
+	//Ã¹ Çà ÃÊ±âÈ­
 	for (int i = 0; i < WIDTH; i++)
 	{
 		NPCmapModel[0][i] = STATE_WALL;
 	}
 
-	// ì²« ì—´ ì´ˆê¸°í™”
+	// Ã¹ ¿­ ÃÊ±âÈ­
 	for (int i = 0; i < HEIGHT; i++)
 	{
 		NPCmapModel[i][0] = STATE_WALL;
 	}
 
-	// ë§ˆì§€ë§‰ ì—´ ì´ˆê¸°í™”
+	// ¸¶Áö¸· ¿­ ÃÊ±âÈ­
 	for (int i = 0; i < HEIGHT; i++)
 	{
 		NPCmapModel[i][WIDTH - 1] = STATE_WALL;
 	}
 
-	//ë§ˆì§€ë§‰ í–‰ ì´ˆê¸°í™”
+	//¸¶Áö¸· Çà ÃÊ±âÈ­
 	for (int i = 0; i < WIDTH; i++)
 	{
 		NPCmapModel[HEIGHT - 1][i] = STATE_WALL;
 	}
 
-	//ë‚´ë¶€ ì±„ìš°ê¸°
+	//³»ºÎ Ã¤¿ì±â
 
 	for (int i = 1; i < HEIGHT - 1; i++) {
 		for (int j = 1; j < WIDTH - 1; j++) {
@@ -1039,23 +1039,23 @@ void reset_npcMapModel()
 
 }
 
-// 11ì›” 30ì¼
+// 11¿ù 30ÀÏ
 
-void draw_Item_chracter_move_reverse(int cursorX, int cursorY) // ìºë¦­í„° ì´ë™ ë°˜ëŒ€ë¡œ ì•„ì´í…œ ì¶œë ¥
+void draw_Item_chracter_move_reverse(int cursorX, int cursorY) // Ä³¸¯ÅÍ ÀÌµ¿ ¹İ´ë·Î ¾ÆÀÌÅÛ Ãâ·Â
 {
 	COORD pre = GetCurrentCursorPos();
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // ì–´ë‘ìš´ íšŒìƒ‰
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // ¾îµÎ¿î È¸»ö
 
 	SetCurrentCursorPos(cursorX, cursorY);
 	printf("  ");
 	SetCurrentCursorPos(cursorX, cursorY);
-	printf("â—");
+	printf("¢·");
 
 	SetCurrentCursorPos(pre.X, pre.Y);
 }
 
-int checkObject_character_Move_reverse_Item(int cursorX, int cursorY)			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— ì´ë™ì†ë„ ì¦ê°€ ì•„ì´í…œì´ ìˆëŠ”ì§€
+int checkObject_character_Move_reverse_Item(int cursorX, int cursorY)			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ÀÌµ¿¼Óµµ Áõ°¡ ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö
 {
 	int x = (cursorX - GBOARD_ORIGIN_X) / 2;
 	int y = cursorY - GBOARD_ORIGIN_Y;
@@ -1065,8 +1065,8 @@ int checkObject_character_Move_reverse_Item(int cursorX, int cursorY)			//ì¸ì
 	return (0);
 }
 
-// 12ì›” 02ì¼
-int checkObject_Empty(int cursorX, int cursorY)		//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œê°€ ë¹„ì–´ìˆëŠ”ì§€
+// 12¿ù 02ÀÏ
+int checkObject_Empty(int cursorX, int cursorY)		//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥°¡ ºñ¾îÀÖ´ÂÁö
 {
 	int x = (cursorX - GBOARD_ORIGIN_X) / 2;
 	int y = cursorY - GBOARD_ORIGIN_Y;
@@ -1080,7 +1080,7 @@ void sky_bomb_drop()
 {
 	current_game_time = clock();
 
-	// 10ì´ˆê°€ ì§€ë‚œ í›„
+	// 10ÃÊ°¡ Áö³­ ÈÄ
 	if (current_game_time - stage_start_time >= 10000)
 	{
 
@@ -1101,7 +1101,7 @@ void sky_bomb_drop()
 
 			set_Empty(sky_bomb_drop_coordinate.X, sky_bomb_drop_coordinate.Y);
 
-			Bomb* newbomb = getBombNode(sky_bomb_drop_coordinate.X, sky_bomb_drop_coordinate.Y, WHO_SET_SKY_BOMB); //x, yì¢Œí‘œì˜ ìƒˆ í­íƒ„ ì–»ì–´ì˜´.
+			Bomb* newbomb = getBombNode(sky_bomb_drop_coordinate.X, sky_bomb_drop_coordinate.Y, WHO_SET_SKY_BOMB); //x, yÁÂÇ¥ÀÇ »õ ÆøÅº ¾ò¾î¿È.
 
 			insertitem(newbomb);
 			check_sky_bomb_set = 0;
@@ -1113,7 +1113,7 @@ void sky_bomb_drop()
 
 void bomb_dropping()
 {
-	COORD tmp_arr[9];		//mapModelì¢Œí‘œê°’ ì €ì¥
+	COORD tmp_arr[9];		//mapModelÁÂÇ¥°ª ÀúÀå
 	int index = 0;
 	for (int i = -1; i <= 1; i++) {
 		for (int j = -1; j <= 1; j++)
@@ -1140,16 +1140,16 @@ void bomb_dropping()
 	}
 }
 
-// í­íƒ„ì´ í•˜ëŠ˜ì—ì„œ ë–¨ì–´ì§ˆ ìˆ˜ ìˆëŠ” ì¢Œí‘œì¸ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜
+// ÆøÅºÀÌ ÇÏ´Ã¿¡¼­ ¶³¾îÁú ¼ö ÀÖ´Â ÁÂÇ¥ÀÎÁö È®ÀÎÇÏ´Â ÇÔ¼ö
 int check_can_sky_bomb_drop(int arrX, int arrY)
 {
-	// ë§µ ì¢Œí‘œë¥¼ ë²—ì–´ë‚˜ëŠ” ê²½ìš°
+	// ¸Ê ÁÂÇ¥¸¦ ¹ş¾î³ª´Â °æ¿ì
 	if (arrX < 0 || arrX > WIDTH - 1)
 		return 0;
 	if (arrY < 0 || arrY > HEIGHT - 1)
 		return 0;
 
-	// NPCê°€ ìˆëŠ” ê²½ìš°
+	// NPC°¡ ÀÖ´Â °æ¿ì
 	if (arrX_to_cursorX(arrX) == npcCurPosX && arrY_to_cursorY(arrY) == npcCurPosY)
 		return (0);
 	if (arrX_to_cursorX(arrX) == npcCurPosX2 && arrY_to_cursorY(arrY) == npcCurPosY2)
@@ -1174,13 +1174,13 @@ void set_sky_bomb_warning(int arrX, int arrY)
 
 	mapModel[arrY][arrX] = SKY_BOMB_DROP_WARNING;
 	SetCurrentCursorPos(cursorX, cursorY);
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3); // ë¹¨ê°•
-	printf("ï¼");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3); // »¡°­
+	printf("£¡");
 
 	SetCurrentCursorPos(pre.X, pre.Y);
 }
 
-//12ì›” 04ì¼ ì¤€í˜•ì´ê°€ ë§Œë“  ë§µ ì¶”ê°€
+//12¿ù 04ÀÏ ÁØÇüÀÌ°¡ ¸¸µç ¸Ê Ãß°¡
 
 void set_mapModel_spiral()
 {

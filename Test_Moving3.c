@@ -11,8 +11,9 @@
 #include "define_state.h"
 #include "bomb.h"
 
-#define flagTime 4000
-
+#define flagTime1 800
+#define flagTime2 500
+int time_limit;
 
 extern int npc3_state_flag;
 
@@ -109,13 +110,17 @@ int NPC_moveDown3() {
 }
 
 
-int NpcMoving3()
+int NpcMoving3(int npc_speed_phase)
 {
 	int preX = 0, preY = 0;
 	int npcX, npcY;
 
-	npcX = npcCurPosX3 / 2;
-	npcY = npcCurPosY3;
+	if (npc_speed_phase == 0) {
+		time_limit = flagTime1;
+	}
+	else if (npc_speed_phase == 1) {
+		time_limit = flagTime2;
+	}
 
 	npcX = cursorX_to_arrX(npcCurPosX3);
 	npcY = cursorY_to_arrY(npcCurPosY3);
@@ -135,7 +140,7 @@ int NpcMoving3()
 
 		if (one_srt_dist3[dy][dx + 1] == 1) { // NPC 현재위치 기준 one_srt_dist의 오른쪽이 1이라면 (갈수있는길)
 			one_srt_dist3[dy][dx] = 0; // 현재 위치의 one_srt_dist를 0으로 초기화 하고
-			if (current_game_time - NPC_current_Time3 > flagTime) {
+			if (current_game_time - NPC_current_Time3 > time_limit) {
 				NPC_current_Time3 = clock();
 				NPC_moveRight3(); //오른쪽으로 이동
 			}
@@ -144,7 +149,7 @@ int NpcMoving3()
 		else if (one_srt_dist3[dy][dx - 1] == 1) {
 			one_srt_dist3[dy][dx] = 0;
 
-			if (current_game_time - NPC_current_Time3 > flagTime) {
+			if (current_game_time - NPC_current_Time3 > time_limit) {
 				NPC_current_Time3 = clock();
 				NPC_moveLeft3();
 			}
@@ -153,7 +158,7 @@ int NpcMoving3()
 		else if (one_srt_dist3[dy + 1][dx] == 1) {
 			one_srt_dist3[dy][dx] = 0;
 
-			if (current_game_time - NPC_current_Time3 > flagTime) {
+			if (current_game_time - NPC_current_Time3 > time_limit) {
 				NPC_current_Time3 = clock();
 				NPC_moveDown3();
 			}
@@ -162,7 +167,7 @@ int NpcMoving3()
 		else if (one_srt_dist3[dy - 1][dx] == 1) {
 			one_srt_dist3[dy][dx] = 0;
 
-			if (current_game_time - NPC_current_Time3 > flagTime) {
+			if (current_game_time - NPC_current_Time3 > time_limit) {
 				NPC_current_Time3 = clock();
 				NPC_moveUp3();
 			}
@@ -171,7 +176,7 @@ int NpcMoving3()
 
 		if (dx == dstX3 && dy == dstY3) { // 목표 위치에 도착하면 mapModel의 상하좌우를 1로 초기화 하고 블럭을 지워줌 (임시 물풍선)
 
-			if (current_game_time - NPC_current_Time3 > flagTime) {
+			if (current_game_time - NPC_current_Time3 > time_limit) {
 				if (npc3_bomb_exist_count < npc3_bomb_max) {
 					npc3_set_bomb();
 				}
@@ -225,6 +230,6 @@ int NPC3_die() {
 
 	SetCurrentCursorPos(npcCurPosX3, npcCurPosY3);
 	set_Empty(cursorX_to_arrX(npcCurPosX3), cursorY_to_arrY(npcCurPosY3));
-	/*npcCurPosX3 = 0;
-	npcCurPosY3 = 0;*/
+	npcCurPosX3 = 0;
+	npcCurPosY3 = 0;
 }

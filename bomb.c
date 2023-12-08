@@ -112,7 +112,7 @@ void insertitem(Bomb* w)
 		npc2_bomb_exist_count++;
 	if (w->who_set == NPC3)
 		npc3_bomb_exist_count++;
-	
+
 }
 
 BOOM* getnode_BOOM(int x, int y, unsigned long long time)
@@ -388,6 +388,8 @@ void TimeCheck_BOOM()
 		tmpBOOM = curBOOM->next;
 		if (cur_time - curBOOM->start_time >= 700) {
 			// bomb boom 지우는 함수 사용
+
+
 
 			set_Empty(curBOOM->x, curBOOM->y);
 			NPCmapModel[curBOOM->y][curBOOM->x] = STATE_EMPTY;
