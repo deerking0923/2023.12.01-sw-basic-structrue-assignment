@@ -4,10 +4,6 @@
 #include <Windows.h>
 #include "calculatorDST2.h"
 
-extern int npcCurPosX2, npcCurPosY2;
-extern unsigned long long NPC_current_2;
-int npc2_state_flag;
-
 void ShowNpcBlock2();
 void DeleteBlock2();
 int NPC_moveLeft2();

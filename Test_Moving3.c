@@ -11,10 +11,13 @@
 #include "define_state.h"
 #include "bomb.h"
 
-#define flagTime 600
+#define flagTime 4000
 
-int npcCurPosX3, npcCurPosY3;
-unsigned long long NPC_current_Time3;
+
+extern int npc3_state_flag;
+
+extern int npcCurPosX3, npcCurPosY3;
+extern unsigned long long NPC_current_Time3;
 extern unsigned long long current_game_time;
 extern int npc3_bomb_exist_count = 0;
 int npc3_bomb_max = 1;
@@ -46,7 +49,7 @@ int NPC_moveLeft3() {
 	else
 		DeleteBlock3();
 	npcCurPosX3 -= 2;
-	set_Empty(npcCurPosX3 / 2, npcCurPosY3);
+	set_Empty(cursorX_to_arrX(npcCurPosX3), cursorY_to_arrY(npcCurPosY3));
 	SetCurrentCursorPos(npcCurPosX3, npcCurPosY3);
 	ShowNpcBlock3();
 	return 0;
@@ -63,7 +66,7 @@ int NPC_moveRight3() {
 	else
 		DeleteBlock3();
 	npcCurPosX3 += 2;
-	set_Empty(npcCurPosX3 / 2, npcCurPosY3);
+	set_Empty(cursorX_to_arrX(npcCurPosX3), cursorY_to_arrY(npcCurPosY3));
 	SetCurrentCursorPos(npcCurPosX3, npcCurPosY3);
 	ShowNpcBlock3();
 
@@ -81,7 +84,7 @@ int NPC_moveUp3() {
 	else
 		DeleteBlock3();
 	npcCurPosY3 -= 1;
-	set_Empty(npcCurPosX3 / 2, npcCurPosY3);
+	set_Empty(cursorX_to_arrX(npcCurPosX3), cursorY_to_arrY(npcCurPosY3));
 	SetCurrentCursorPos(npcCurPosX3, npcCurPosY3);
 	ShowNpcBlock3();
 
@@ -98,7 +101,7 @@ int NPC_moveDown3() {
 	else
 		DeleteBlock3();
 	npcCurPosY3 += 1;
-	set_Empty(npcCurPosX3 / 2, npcCurPosY3);
+	set_Empty(cursorX_to_arrX(npcCurPosX3), cursorY_to_arrY(npcCurPosY3));
 	SetCurrentCursorPos(npcCurPosX3, npcCurPosY3);
 	ShowNpcBlock3();
 
@@ -113,6 +116,9 @@ int NpcMoving3()
 
 	npcX = npcCurPosX3 / 2;
 	npcY = npcCurPosY3;
+
+	npcX = cursorX_to_arrX(npcCurPosX3);
+	npcY = cursorY_to_arrY(npcCurPosY3);
 
 	int kill_Mode = ShortestDistance3(npcX, npcY); // 여기서 one_srt_dist 배열을 만들어줌 (이 배열을 보고 NPC가 움직임)
 
@@ -169,7 +175,7 @@ int NpcMoving3()
 				if (npc3_bomb_exist_count < npc3_bomb_max) {
 					npc3_set_bomb();
 				}
-				NPCmapModel[dstY3][dstX3] = STATE_NPC_WARNING;
+				//NPCmapModel[dstY3][dstX3] = STATE_NPC_WARNING;
 				NPC_current_Time3 = clock();
 				if (dx < preX) {
 					NPC_moveRight3();
@@ -197,8 +203,8 @@ int CheckNPCState3()
 	////////////추가
 	if (checkObject_boom(npcCurPosX3, npcCurPosY3) == 1)
 	{
-		SetCurrentCursorPos(3, HEIGHT + GBOARD_ORIGIN_Y);
-		printf("NPC down!\n");
+		SetCurrentCursorPos(3, HEIGHT + GBOARD_ORIGIN_Y + 1);
+		printf("NPC3 down!\n");
 		npc3_state_flag = 1;
 		return (1);
 	}
@@ -212,8 +218,13 @@ int CheckNPCState3()
 }
 
 int NPC3_die() {
+	if (cursorX_to_arrX(npcCurPosX3) < 0 || WIDTH - 1 < cursorX_to_arrX(npcCurPosX3))
+		return (1);
+	if (cursorY_to_arrY(npcCurPosY3) < 0 || HEIGHT - 1 < cursorY_to_arrY(npcCurPosY3))
+		return (1);
+
 	SetCurrentCursorPos(npcCurPosX3, npcCurPosY3);
-	set_Empty(npcCurPosX3, npcCurPosY3);
-	npcCurPosX3 = 0;
-	npcCurPosY3 = 0;
+	set_Empty(cursorX_to_arrX(npcCurPosX3), cursorY_to_arrY(npcCurPosY3));
+	/*npcCurPosX3 = 0;
+	npcCurPosY3 = 0;*/
 }

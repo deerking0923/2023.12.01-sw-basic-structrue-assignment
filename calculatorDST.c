@@ -140,13 +140,13 @@ void bfs(int x, int y) {
 						
 
 
-						if (nx * 2 == PlayerCurPosX && ny == PlayerCurPosY) { // 만약 탐색중에 플레이어 위치를 발견하면
+						if (arrX_to_cursorX(nx) == PlayerCurPosX && ny + arrY_to_cursorY(ny) == PlayerCurPosY) { // 만약 탐색중에 플레이어 위치를 발견하면
 							kill_Mode = 1;
 						}
 
 						if (kill_Mode == 1) { // kill_Mode 가 1이면 플레이어만 쫓아다님
-							dstX = PlayerCurPosX / 2;
-							dstY = PlayerCurPosY;
+							dstX = cursorX_to_arrX(PlayerCurPosX);
+							dstY = cursorY_to_arrY(PlayerCurPosY);
 						}
 						else if (kill_Mode == 0) { // 아직 플레이어 위치를 못찾았다면
 

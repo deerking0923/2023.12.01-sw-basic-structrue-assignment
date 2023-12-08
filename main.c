@@ -27,15 +27,15 @@ int player_item_range;
 extern BombHead* bombHead;
 extern BOOMHead* boomhead;
 
-extern int npcCurPosX, npcCurPosY;
-extern int npcCurPosX2, npcCurPosY2;
-extern int npcCurPosX3, npcCurPosY3;
-extern unsigned long long NPC_current_Time;
-extern unsigned long long NPC_current_Time2;
-extern unsigned long long NPC_current_Time3;
-extern int npc1_state_flag = 0;
-extern int npc2_state_flag = 0;
-extern int npc3_state_flag = 0;
+int npcCurPosX, npcCurPosY;
+int npcCurPosX2, npcCurPosY2;
+int npcCurPosX3, npcCurPosY3;
+unsigned long long NPC_current_Time;
+unsigned long long NPC_current_Time2;
+unsigned long long NPC_current_Time3;
+int npc1_state_flag = 0;
+int npc2_state_flag = 0;
+int npc3_state_flag = 0;
 
 extern Map_box_head* map_box_head;             //폭탄이 모두 터진 후 박스를 없애기 위한 맵 박스 구조체 배열의 헤드 선언
 
@@ -61,7 +61,7 @@ int main(void)
 
 	Sleep(500);
 	
-	system("mode con:cols=100 lines=30 | title 포포폭탄");
+	system("mode con:cols=100 lines=40 | title 포포폭탄");
 
 	RemoveCursor();
 
@@ -84,7 +84,7 @@ int main(void)
 
 	NPC_current_Time = 0;
 
-	for (game_round = 0; game_round < 6; game_round++)
+	for (game_round = 5; game_round < 6; game_round++)
 	{
 		bomb_max = 1;
 		player_bomb_len = 1;
@@ -94,14 +94,14 @@ int main(void)
 		PlayerCurPosX = arrX_to_cursorX(WIDTH - 3);		//get_Player_starting_point_x();
 		PlayerCurPosY = arrY_to_cursorY(HEIGHT - 3);  //get_Player_starting_point_y();
 
-		npcCurPosX = 2 * 2;
-		npcCurPosY = 2;
+		npcCurPosX = 2 * 2 + GBOARD_ORIGIN_X;
+		npcCurPosY = 2 + GBOARD_ORIGIN_Y;
 
-		npcCurPosX2 = 14 * 2;
-		npcCurPosY2 = 2;
+		npcCurPosX2 = 14 * 2 + GBOARD_ORIGIN_X;
+		npcCurPosY2 = 2 + GBOARD_ORIGIN_Y;
 
-		npcCurPosX3 = 2 * 2;
-		npcCurPosY3 = 14;
+		npcCurPosX3 = 2 * 2 + +GBOARD_ORIGIN_X;
+		npcCurPosY3 = 14 + +GBOARD_ORIGIN_Y;
 
 		NPC_current_Time = 0;
 		NPC_current_Time2 = 0;
@@ -215,22 +215,9 @@ int main(void)
 
 			if (CheckPlayerState() == 1)
 				Sleep(10000);
-			if (game_round == 0 && CheckNPCState() == 2) {
-				return;
-			}
-			if (game_round == 1 && (CheckNPCState() == 2 || CheckNPCState2() == 2)) {
-				return;
-			}
-			if (game_round == 2 && (CheckNPCState() == 2 || CheckNPCState2() == 2 || CheckNPCState3() == 2)) {
-				return;
-			}
 
 			PlayerControl();
 
-
-			/*NpcMoving();
-			NpcMoving2();
-			NpcMoving3();*/
 
 			if (game_round == 0) {
 				if (CheckNPCState() != 1 && npc1_state_flag == 0) {
@@ -244,10 +231,11 @@ int main(void)
 				}
 			}
 			else if (game_round == 1) {
-				if (CheckNPCState() != 1 && npc1_state_flag == 0) {
-					NpcMoving();
+				if (npc1_state_flag == 0) {
+					if (CheckNPCState() != 1)
+						NpcMoving();
 				}
-				if (CheckNPCState2() != 1 && npc2_state_flag == 0) {
+				if (npc2_state_flag == 0 && CheckNPCState2() != 1) {
 					NpcMoving2();
 				}
 				if (npc1_state_flag == 1) {
@@ -352,6 +340,16 @@ int main(void)
 				}
 				printf("\n");
 			}*/
+
+			/*SetCurrentCursorPos(0, 23);
+			for (int i = 0; i < HEIGHT; i++) {
+				for (int j = 0; j < WIDTH; j++) {
+					printf("%4d", mapModel[i][j]);
+				}
+				printf("\n");
+			}*/
+
+			
 
 			if (game_round >= 3)
 				sky_bomb_drop();

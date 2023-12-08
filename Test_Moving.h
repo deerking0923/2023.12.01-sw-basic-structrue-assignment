@@ -4,9 +4,6 @@
 #include <Windows.h>
 #include "calculatorDST.h"
 
-extern int npcCurPosX, npcCurPosY;
-extern unsigned long long NPC_current_Time;
-int npc1_state_flag;
 
 void ShowNpcBlock();
 void DeleteBlock();

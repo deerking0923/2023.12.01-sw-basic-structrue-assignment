@@ -55,27 +55,28 @@ Bomb* getBombNode(int x, int y, int who_set)
 		newbomb->len = 1;
 	newbomb->who_set = who_set;
 
+	NPCmapModel[y][x] = STATE_NPC_WARNING;
 	for (int i = 0; i < 4; i++) { // 물풍선이 설치된 지역을 777로 표시
 		for (int j = 0; j < newbomb->len; j++) {
-			if (NPCmapModel[y - j - 1][x] == STATE_WALL || mapModel[y - j - 1][x] == STATE_BOX) {
+			if (mapModel[y - j - 1][x] == STATE_WALL || mapModel[y - j - 1][x] == STATE_BOX) {
 				break;
 			}
 			NPCmapModel[y - j - 1][x] = STATE_NPC_WARNING;
 		}
 		for (int j = 0; j < newbomb->len; j++) {
-			if (NPCmapModel[y + j + 1][x] == STATE_WALL || mapModel[y + j + 1][x] == STATE_BOX) {
+			if (mapModel[y + j + 1][x] == STATE_WALL || mapModel[y + j + 1][x] == STATE_BOX) {
 				break;
 			}
 			NPCmapModel[y + j + 1][x] = STATE_NPC_WARNING;
 		}
 		for (int j = 0; j < newbomb->len; j++) {
-			if (NPCmapModel[y][x - j - 1] == STATE_WALL || mapModel[y][x - j - 1] == STATE_BOX) {
+			if (mapModel[y][x - j - 1] == STATE_WALL || mapModel[y][x - j - 1] == STATE_BOX) {
 				break;
 			}
 			NPCmapModel[y][x - j - 1] = STATE_NPC_WARNING;
 		}
 		for (int j = 0; j < newbomb->len; j++) {
-			if (NPCmapModel[y][x + j + 1] == STATE_WALL || mapModel[y][x + j + 1] == STATE_BOX) {
+			if (mapModel[y][x + j + 1] == STATE_WALL || mapModel[y][x + j + 1] == STATE_BOX) {
 				break;
 			}
 			NPCmapModel[y][x + j + 1] = STATE_NPC_WARNING;
@@ -216,7 +217,7 @@ void BombSwich_On(int x, int y)
 			set_Bomb_Boom(x, y - i);
 			w = getnode_BOOM(x, y - i, time);
 			insertitem_BOOM(w);
-			NPCmapModel[y - i][x] = STATE_EMPTY;
+			//NPCmapModel[y - i][x] = STATE_EMPTY;
 		}
 		else if (checkObject_box(arrX_to_cursorX(x), arrY_to_cursorY(y - i))) { //나무 상자라면
 			insert_map_box_struct(map_box_head, x, y - i);
@@ -240,7 +241,7 @@ void BombSwich_On(int x, int y)
 			set_Bomb_Boom(x, y + i);
 			w = getnode_BOOM(x, y + i, time);
 			insertitem_BOOM(w);
-			NPCmapModel[y + i][x] = STATE_EMPTY;
+			//NPCmapModel[y + i][x] = STATE_EMPTY;
 		}
 		else if (checkObject_box(arrX_to_cursorX(x), arrY_to_cursorY(y + i))) { //나무 상자라면
 			insert_map_box_struct(map_box_head, x, y + i);
@@ -263,7 +264,7 @@ void BombSwich_On(int x, int y)
 		else if (checkObject_can_go(arrX_to_cursorX(x - i), arrY_to_cursorY(y))) {
 			set_Bomb_Boom(x - i, y);
 			w = getnode_BOOM(x - i, y, time);
-			NPCmapModel[y][x - i] = STATE_EMPTY;
+			//NPCmapModel[y][x - i] = STATE_EMPTY;
 			insertitem_BOOM(w);
 		}
 		else if (checkObject_box(arrX_to_cursorX(x - i), arrY_to_cursorY(y))) { //나무 상자라면
@@ -290,7 +291,7 @@ void BombSwich_On(int x, int y)
 			set_Bomb_Boom(x + i, y);
 			w = getnode_BOOM(x + i, y, time);
 			insertitem_BOOM(w);
-			NPCmapModel[y][x + i] = STATE_EMPTY;
+			//NPCmapModel[y][x + i] = STATE_EMPTY;
 		}
 		else if (checkObject_box(arrX_to_cursorX(x + i), arrY_to_cursorY(y))) { //나무 상자라면
 			insert_map_box_struct(map_box_head, x + i, y);
@@ -387,6 +388,7 @@ void TimeCheck_BOOM()
 		tmpBOOM = curBOOM->next;
 		if (cur_time - curBOOM->start_time >= 700) {
 			// bomb boom 지우는 함수 사용
+
 			set_Empty(curBOOM->x, curBOOM->y);
 			NPCmapModel[curBOOM->y][curBOOM->x] = STATE_EMPTY;
 			// BOOM 노드 삭제 함수 사용
@@ -416,7 +418,7 @@ void player_set_bomb()
 
 void npc1_set_bomb()
 {
-	Bomb* newbomb = getBombNode((npcCurPosX - GBOARD_ORIGIN_X) / 2, (npcCurPosY - GBOARD_ORIGIN_Y), NPC1); //x, y좌표의 새 폭탄 얻어옴.
+	Bomb* newbomb = getBombNode(cursorX_to_arrX(npcCurPosX), cursorY_to_arrY(npcCurPosY), NPC1); //x, y좌표의 새 폭탄 얻어옴.
 	insertitem(newbomb);
 }
 

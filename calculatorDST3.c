@@ -142,13 +142,13 @@ void bfs3(int x, int y) {
 						weight3[ny][nx] = q3[rear3].dist;
 
 
-						if (nx * 2 == PlayerCurPosX && ny == PlayerCurPosY) { // 만약 탐색중에 플레이어 위치를 발견하면
+						if (arrX_to_cursorX(nx) == PlayerCurPosX && arrY_to_cursorY(ny) == PlayerCurPosY) { // 만약 탐색중에 플레이어 위치를 발견하면
 							kill_Mode3 = 1;
 						}
 
 						if (kill_Mode3 == 1) { // kill_Mode 가 1이면 플레이어만 쫓아다님
-							dstX3 = PlayerCurPosX / 2;
-							dstY3 = PlayerCurPosY;
+							dstX3 = cursorX_to_arrX(PlayerCurPosX);
+							dstY3 = cursorY_to_arrY(PlayerCurPosY);
 						}
 						else if (kill_Mode3 == 0) { // 아직 플레이어 위치를 못찾았다면
 

@@ -719,6 +719,9 @@ void set_Empty(int arrX, int arrY)				//해당 좌표 공백으로 만들기
 	int cursorX = arrX * 2 + GBOARD_ORIGIN_X;
 	int cursorY = arrY + GBOARD_ORIGIN_Y;
 
+	/*SetCurrentCursorPos(80, 27);
+	printf("arrX = %d arrY = %d", arrX, arrY);*/
+
 	mapModel[arrY][arrX] = STATE_EMPTY;
 	SetCurrentCursorPos(cursorX, cursorY);
 	printf("  ");
@@ -809,7 +812,8 @@ int check_over_GameBoard_HEIGHT(int arrY)
 //			insertitem_BOOM(w);
 //		}
 //		else if (checkObject_box(arrX_to_cursorX(x), arrY_to_cursorY(y - i))) { //나무 상자라면
-//			set_Empty(x, y - i);
+//			
+// (x, y - i);
 //			gernerate_Item(arrX_to_cursorX(x), arrY_to_cursorY(y - i));
 //			break;          // 나무 상자 뒤로 폭탄의 범위가 퍼지지 않게
 //		}
@@ -915,6 +919,7 @@ Map_box_head* generate_map_box_head()
 
 void insert_map_box_struct(Map_box_head* head, int x, int y)
 {
+
 	if (head->next == NULL)
 	{
 		Map_box* new_map_box = (Map_box*)malloc(sizeof(Map_box));
@@ -1077,7 +1082,7 @@ void sky_bomb_drop()
 	{
 
 		//printf("stage_start_time = %ld", stage_start_time);
-		if (current_game_time - recent_sky_bomb_drop_time >= 5000)
+		if (current_game_time - recent_sky_bomb_drop_time >= 2000)
 		{
 			bomb_dropping();
 			recent_sky_bomb_drop_time = clock();
@@ -1086,6 +1091,7 @@ void sky_bomb_drop()
 
 		if (current_game_time - recent_sky_bomb_drop_time >= 1000 && check_sky_bomb_set == 1)
 		{
+
 			set_Empty(sky_bomb_drop_coordinate.X, sky_bomb_drop_coordinate.Y);
 			
 			Bomb* newbomb = getBombNode(sky_bomb_drop_coordinate.X, sky_bomb_drop_coordinate.Y, WHO_SET_SKY_BOMB); //x, y좌표의 새 폭탄 얻어옴.
