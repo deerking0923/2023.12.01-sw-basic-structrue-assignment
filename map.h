@@ -27,57 +27,58 @@ typedef struct map_box_head {
 
 Map_box_head* map_box_head;
 extern unsigned long long current_game_time;
-extern unsigned long long recent_sky_bomb_drop_time;//warningÀ» ³õÀº ½Ã°£
+extern unsigned long long recent_sky_bomb_drop_time;//warningì„ ë†“ì€ ì‹œê°„
 extern unsigned long long stage_start_time;
 int check_sky_bomb_set;
 
 COORD sky_bomb_drop_coordinate;
 
-int* output_random_5_num_arr();		//¸Ê ·£´ı ¹èÄ¡¸¦ À§ÇÑ ·£´ı ¼ıÀÚ 5°³ »ı¼º ÇÔ¼ö
-void resetMap();		//¸Ê ÃÊ±â °ª ¼³Á¤
-void generateMap();		//¸Ê »ı¼º
-void drawMaps();		//¸Ê Ãâ·Â
-//void draw_3_3maps(int x, int y, int cursX, int cursY);		//3*3 À¸·Î È®Àå
+int* output_random_5_num_arr();		//ë§µ ëœë¤ ë°°ì¹˜ë¥¼ ìœ„í•œ ëœë¤ ìˆ«ì 5ê°œ ìƒì„± í•¨ìˆ˜
+void resetMap();		//ë§µ ì´ˆê¸° ê°’ ì„¤ì •
+void generateMap();		//ë§µ ìƒì„±
+void drawMaps();		//ë§µ ì¶œë ¥
+//void draw_3_3maps(int x, int y, int cursX, int cursY);		//3*3 ìœ¼ë¡œ í™•ì¥
+void Explain();
 
-int checkObject_can_go(int cursorX, int cursorY);		//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥·Î ÀÌµ¿ÇÒ ¼ö ÀÖ´ÂÁö
-int checkObject_Item(int cursorX, int cursorY);			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö
+int checkObject_can_go(int cursorX, int cursorY);		//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œë¡œ ì´ë™í•  ìˆ˜ ìˆëŠ”ì§€
+int checkObject_Item(int cursorX, int cursorY);			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— ì•„ì´í…œì´ ìˆëŠ”ì§€
 
-int checkObject_bomb_max_Item(int cursorX, int cursorY);			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ÆøÅº °³¼ö Áõ°¡ ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö
-int checkObject_bomb_range_Item(int cursorX, int cursorY);			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ÆøÅº ¹üÀ§ Áõ°¡ ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö
-int checkObject_character_Move_Item(int cursorX, int cursorY);			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ÀÌµ¿¼Óµµ Áõ°¡ ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö
+int checkObject_bomb_max_Item(int cursorX, int cursorY);			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— í­íƒ„ ê°œìˆ˜ ì¦ê°€ ì•„ì´í…œì´ ìˆëŠ”ì§€
+int checkObject_bomb_range_Item(int cursorX, int cursorY);			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— í­íƒ„ ë²”ìœ„ ì¦ê°€ ì•„ì´í…œì´ ìˆëŠ”ì§€
+int checkObject_character_Move_Item(int cursorX, int cursorY);			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— ì´ë™ì†ë„ ì¦ê°€ ì•„ì´í…œì´ ìˆëŠ”ì§€
 
-int checkObject_boom(int cursorX, int cursorY);			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥°¡ Æø¹ß¹üÀ§ÀÎÁö
-int checkObject_box(int cursorX, int cursorY);			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ºÎ½Ç ¼ö ÀÖ´Â Àå¾Ö¹°ÀÌ ÀÖ´ÂÁö
-int checkObject_wall(int cursorX, int cursorY);			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ºÎ½Ç ¼ö ¾ø´Â Àå¾Ö¹°ÀÌ ÀÖ´ÂÁö
-int checkObject_exist_bomb(int cursorX, int cursorY);	//ÀÎÀÚ¶ó ÁÖ¾îÁø ÁÂÇ¥¿¡ ÅÍÁöÁö ¾ÊÀº ÆøÅºÀÌ Á¸ÀçÇÏ´ÂÁö
+int checkObject_boom(int cursorX, int cursorY);			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œê°€ í­ë°œë²”ìœ„ì¸ì§€
+int checkObject_box(int cursorX, int cursorY);			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— ë¶€ì‹¤ ìˆ˜ ìˆëŠ” ì¥ì• ë¬¼ì´ ìˆëŠ”ì§€
+int checkObject_wall(int cursorX, int cursorY);			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— ë¶€ì‹¤ ìˆ˜ ì—†ëŠ” ì¥ì• ë¬¼ì´ ìˆëŠ”ì§€
+int checkObject_exist_bomb(int cursorX, int cursorY);	//ì¸ìë¼ ì£¼ì–´ì§„ ì¢Œí‘œì— í„°ì§€ì§€ ì•Šì€ í­íƒ„ì´ ì¡´ì¬í•˜ëŠ”ì§€
 
-void gernerate_Item(int cursorX, int cursorY);          // ÇØ´ç ÁÂÇ¥¿¡ ¾ÆÀÌÅÛ »ı¼º
-void draw_Item_bomb_max(int x, int y);       // ÇØ´ç ÁÂÇ¥¿¡ bomb max Áõ°¡ ¾ÆÀÌÅÛ Ãâ·Â
-void draw_Item_bomb_range(int x, int y);     // ÇØ´ç ÁÂÇ¥¿¡ bomb max Áõ°¡ ¾ÆÀÌÅÛ Ãâ·Â
-void draw_Item_chracter_move(int x, int y); // ÇØ´ç ÁÂÇ¥¿¡ bomb max Áõ°¡ ¾ÆÀÌÅÛ Ãâ·Â
+void gernerate_Item(int cursorX, int cursorY);          // í•´ë‹¹ ì¢Œí‘œì— ì•„ì´í…œ ìƒì„±
+void draw_Item_bomb_max(int x, int y);       // í•´ë‹¹ ì¢Œí‘œì— bomb max ì¦ê°€ ì•„ì´í…œ ì¶œë ¥
+void draw_Item_bomb_range(int x, int y);     // í•´ë‹¹ ì¢Œí‘œì— bomb max ì¦ê°€ ì•„ì´í…œ ì¶œë ¥
+void draw_Item_chracter_move(int x, int y); // í•´ë‹¹ ì¢Œí‘œì— bomb max ì¦ê°€ ì•„ì´í…œ ì¶œë ¥
 
-int get_Player_starting_point_x();			//ÇÃ·¹ÀÌ¾î ÃÊ±â x À§Ä¡ ÁöÁ¤
-int get_Player_starting_point_y();			//ÇÃ·¹ÀÌ¾î ÃÊ±â y À§Ä¡ ÁöÁ¤
+int get_Player_starting_point_x();			//í”Œë ˆì´ì–´ ì´ˆê¸° x ìœ„ì¹˜ ì§€ì •
+int get_Player_starting_point_y();			//í”Œë ˆì´ì–´ ì´ˆê¸° y ìœ„ì¹˜ ì§€ì •
 
-void set_Bomb(int arrX, int arrY);				//ÇØ´çÁÂÇ¥¿¡ ÆøÅº³õ±â		
-void set_Empty(int arrX, int arrY);				//ÇØ´ç ÁÂÇ¥ °ø¹éÀ¸·Î ¸¸µé±â
-void set_Bomb_Boom(int arrX, int arrY);			//ÇØ´ç ÁÂÇ¥¿¡ ÆøÅº Æø¹ßÇÏ°Ô ¸¸µé±â
-void set_NPC_Warning(int arrX, int arrY);		//ÇØ´ç ÁÂÇ¥¿¡ NPC Warning updateÇÏ±â
+void set_Bomb(int arrX, int arrY);				//í•´ë‹¹ì¢Œí‘œì— í­íƒ„ë†“ê¸°		
+void set_Empty(int arrX, int arrY);				//í•´ë‹¹ ì¢Œí‘œ ê³µë°±ìœ¼ë¡œ ë§Œë“¤ê¸°
+void set_Bomb_Boom(int arrX, int arrY);			//í•´ë‹¹ ì¢Œí‘œì— í­íƒ„ í­ë°œí•˜ê²Œ ë§Œë“¤ê¸°
+void set_NPC_Warning(int arrX, int arrY);		//í•´ë‹¹ ì¢Œí‘œì— NPC Warning updateí•˜ê¸°
 
-// 11¿ù 18ÀÏ Ãß°¡
-int cursorX_to_arrX(int cursorX);			//Ä¿¼­ÁÂÇ¥¸¦ ¹è¿­ÀÇ ÁÂÇ¥·Î º¯È¯
-int cursorY_to_arrY(int cursorY);			//Ä¿¼­ÁÂÇ¥¸¦ ¹è¿­ÀÇ ÁÂÇ¥·Î º¯È¯
+// 11ì›” 18ì¼ ì¶”ê°€
+int cursorX_to_arrX(int cursorX);			//ì»¤ì„œì¢Œí‘œë¥¼ ë°°ì—´ì˜ ì¢Œí‘œë¡œ ë³€í™˜
+int cursorY_to_arrY(int cursorY);			//ì»¤ì„œì¢Œí‘œë¥¼ ë°°ì—´ì˜ ì¢Œí‘œë¡œ ë³€í™˜
 
-int arrX_to_cursorX(int arrX);				//¹è¿­ ÁÂÇ¥¸¦ Ä¿¼­ ÁÂÇ¥·Î º¯È¯
-int arrY_to_cursorY(int arrY);				//¹è¿­ ÁÂÇ¥¸¦ Ä¿¼­ ÁÂÇ¥·Î º¯È¯
+int arrX_to_cursorX(int arrX);				//ë°°ì—´ ì¢Œí‘œë¥¼ ì»¤ì„œ ì¢Œí‘œë¡œ ë³€í™˜
+int arrY_to_cursorY(int arrY);				//ë°°ì—´ ì¢Œí‘œë¥¼ ì»¤ì„œ ì¢Œí‘œë¡œ ë³€í™˜
 
-int check_over_GameBoard_Width(int arrX);		//¸ÊÀ» ¹ş¾î³ª´ÂÁö
-int check_over_GameBoard_HEIGHT(int arrY);		//¸ÊÀ» ¹ş¾î³ª´ÂÁö
+int check_over_GameBoard_Width(int arrX);		//ë§µì„ ë²—ì–´ë‚˜ëŠ”ì§€
+int check_over_GameBoard_HEIGHT(int arrY);		//ë§µì„ ë²—ì–´ë‚˜ëŠ”ì§€
 
 //void npc_Warning_update(int arrX, int arrY, Bomb* newbomb);
 int checkPlayer_Killed_NPC(int npcCurPosX, int npcCurPosY, int PlayerCurPosX, int PlayerCurPosY);
 
-// 11¿ù 20ÀÏ map_box_head
+// 11ì›” 20ì¼ map_box_head
 
 Map_box_head* generate_map_box_head();
 void insert_map_box_struct(Map_box_head* head, int x, int y);
@@ -93,19 +94,19 @@ void set_mapModel3();
 void reset_npcMapModel();
 
 
-// 11¿ù 30ÀÏ
-void draw_Item_chracter_move_reverse(int cursorX, int cursorY); // Ä³¸¯ÅÍ ÀÌµ¿ ¹İ´ë·Î ¾ÆÀÌÅÛ Ãâ·Â
+// 11ì›” 30ì¼
+void draw_Item_chracter_move_reverse(int cursorX, int cursorY); // ìºë¦­í„° ì´ë™ ë°˜ëŒ€ë¡œ ì•„ì´í…œ ì¶œë ¥
 
-int checkObject_character_Move_reverse_Item(int cursorX, int cursorY);			//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥¿¡ ÀÌµ¿¼Óµµ Áõ°¡ ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö
+int checkObject_character_Move_reverse_Item(int cursorX, int cursorY);			//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œì— ì´ë™ì†ë„ ì¦ê°€ ì•„ì´í…œì´ ìˆëŠ”ì§€
 
-// 12¿ù 02ÀÏ
-int checkObject_Empty(int cursorX, int cursorY);		//ÀÎÀÚ·Î ÁÖ¾îÁø ÁÂÇ¥°¡ ºñ¾îÀÖ´ÂÁö
+// 12ì›” 02ì¼
+int checkObject_Empty(int cursorX, int cursorY);		//ì¸ìë¡œ ì£¼ì–´ì§„ ì¢Œí‘œê°€ ë¹„ì–´ìˆëŠ”ì§€
 void sky_bomb_drop();
 void bomb_dropping();
 int check_can_sky_bomb_drop(int arrX, int arrY);
 void set_sky_bomb_warning(int arrX, int arrY);
 
-//12¿ù 04ÀÏ ÁØÇüÀÌ°¡ ¸¸µç ¸Ê Ãß°¡
+//12ì›” 04ì¼ ì¤€í˜•ì´ê°€ ë§Œë“  ë§µ ì¶”ê°€
 
 void set_mapModel_spiral();
 void set_mapModel_eye();
